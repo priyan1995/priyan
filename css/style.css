@@ -1,14 +1,4 @@
-/* =================================
-------------------------------------
-  Cassi | Photo Studio HTML Template
-  Version: 1.0
- ------------------------------------
- ====================================*/
 
-/*----------------------------------------*/
-
-/* Template default CSS
-/*----------------------------------------*/
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap");
@@ -18,6 +8,7 @@ html, body {
 	-webkit-font-smoothing: antialiased;
 	background: #151515;
 }
+
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	color: #333333;
@@ -107,7 +98,7 @@ ul, ol {
 	padding: 17px 25px;
 	min-width: 170px;
 	color: #fff;
-	background: #242deb;
+	background: #da0d2b;
 	line-height: 1;
 	letter-spacing: 1px;
 	text-transform: uppercase;
@@ -269,7 +260,7 @@ ul, ol {
 	}
 }
 .main-menu li a:hover, .main-menu li a.active {
-	color: #242deb;
+	color: #da0d2b;
 }
 .menu-footer {
 	padding: 26px 40px 22px;
@@ -383,8 +374,8 @@ ul, ol {
 	transition: all 0.4s;
 }
 .hero-slider .owl-nav button.owl-prev:hover, .hero-slider .owl-nav button.owl-next:hover {
-	background: #242deb;
-	border-color: #242deb;
+	background: #da0d2b;
+	border-color: #da0d2b;
 }
 .hero-slider .owl-nav button.owl-prev {
 	margin-right: 10px;
@@ -416,11 +407,14 @@ ul, ol {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	color: #fff;
-	background: #242deb;
+	background: #da0d2b6b;
 	position: relative;
 	opacity: 0;
 	filter: alpha(opacity=0);
 	top: 50px;
+}
+.hero-text .ht-cata i{
+	color: #bfbfbf;
 }
 .hero-text h2 {
 	font-size: 80px;
@@ -464,7 +458,7 @@ ul, ol {
 	font-size: 24px;
 	position: relative;
 	top: 5px;
-	color: #242deb;
+	color: #da0d2b;
 	margin-left: 5px;
 }
 .hi-bg {
@@ -560,7 +554,7 @@ ul, ol {
 	height: 2px;
 	left: 0;
 	bottom: -2px;
-	background: #242deb;
+	background: #da0d2b;
 	-webkit-transition: all 0.4s;
 	-moz-transition: all 0.4s;
 	-o-transition: all 0.4s;
@@ -725,7 +719,7 @@ ul, ol {
 	transition: all 0.4s;
 }
 .team-meta .tm-social a:hover {
-	color: #242deb;
+	color: #da0d2b;
 	background: #fff;
 }
 /*------------------
@@ -816,7 +810,7 @@ ul, ol {
 	background-color: transparent;
 }
 .fr-thumbnail-active {
-	border: 2px solid #242deb;
+	border: 2px solid #da0d2b;
 }
 /*----------------
    Blog Page
@@ -852,7 +846,7 @@ ul, ol {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	color: #fff;
-	background: #242deb;
+	background: #da0d2b;
 }
 .feature-blog h2 {
 	font-size: 80px;
@@ -910,7 +904,7 @@ ul, ol {
 	text-align: center;
 	letter-spacing: 2px;
 	color: #fff;
-	background: #242deb;
+	background: #da0d2b;
 }
 .blog-item .blog-text h6 {
 	font-size: 20px;
@@ -1021,7 +1015,7 @@ ul, ol {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	color: #fff;
-	background: #242deb;
+	background: #da0d2b;
 }
 .blog-single-header h2 {
 	font-size: 80px;
@@ -1096,7 +1090,7 @@ ul, ol {
 	text-align: center;
 	letter-spacing: 2px;
 	color: #fff;
-	background: #242deb;
+	background: #da0d2b;
 }
 .blog-content .post-share span {
 	display: inline-block;
@@ -1112,7 +1106,7 @@ ul, ol {
 	padding: 0 2px;
 }
 .blog-content .post-share a:hover {
-	color: #242deb;
+	color: #da0d2b;
 }
 .recent-blog.blog-item {
 	height: 352px;
@@ -1217,7 +1211,7 @@ ul, ol {
 	left: 0;
 	top: 2px;
 	font-size: 18px;
-	color: #242deb;
+	color: #da0d2b;
 }
 .contact-form label {
 	font-size: 18px;
