@@ -1242,3 +1242,23 @@ ul, ol {
 	letter-spacing: 2px;
 	border: 1px solid #000000;
 }
+
+.pd-prof-img-sec{
+	overflow: hidden;
+	border-radius: 100%;
+}
+.pd-prof-img-sec img{
+	border-radius: 100%;
+	filter: brightness(0.8);
+	transition: 0.5s;	
+}
+
+.pd-prof-img-sec img:hover{
+	transition: 0.5s;
+	filter: brightness(0.6);
+	transform: scale(1.1);
+}
+
+.pd-just-centered{
+	align-items: center;
+}
