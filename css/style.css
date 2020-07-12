@@ -1253,12 +1253,56 @@ ul, ol {
 	transition: 0.5s;	
 }
 
-.pd-prof-img-sec img:hover{
+/* .pd-prof-img-sec img:hover{
 	transition: 0.5s;
 	filter: brightness(0.6);
 	transform: scale(1.1);
-}
+} */
 
 .pd-just-centered{
 	align-items: center;
+}
+
+.emp-history h4{
+	margin-bottom: 10px;
+}
+
+.emp-history .ai-text{
+	margin-bottom: 25px;
+}
+
+.pd-skills h4{
+	margin-bottom: 2px;
+	font-size: 16px;
+}
+
+.pd-skills p{
+	margin-bottom: 0;
+}
+
+.pd-skills .pd-card{
+	text-align: center;
+    padding: 10px;
+    background: #211e1e;
+	box-shadow: 0px 3px 9px #00000063;
+	transition: 0.5s;
+}
+
+.pd-skills .pd-card:hover{
+    transition: 0.5s;
+    transform: translateY(-4px);
+    box-shadow: 0px 6px 10px #0000008f;
+}
+
+.pd-skills .col-lg-4{
+	padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.ai-text a{
+	color:white;
+}
+
+.pd-edu h4{
+	margin-bottom: 10px;
 }
