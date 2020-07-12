@@ -1245,7 +1245,6 @@ ul, ol {
 
 .pd-prof-img-sec{
 	overflow: hidden;
-	border-radius: 100%;
 }
 .pd-prof-img-sec img{
 	border-radius: 100%;
@@ -1305,4 +1304,34 @@ ul, ol {
 
 .pd-edu h4{
 	margin-bottom: 10px;
+}
+
+@media (max-width:700px){
+	.pd-skills .ai-text{
+		padding-left: 15px;
+		padding-right: 0;
+	}
+	.pd-skills .ai-text .col-lg-4{
+		padding-right: 0;
+	}
+}
+
+@media (max-width:900px){
+	.pd-prof-img-sec img{
+		width: 300px;
+	}
+}
+
+@media (max-width:1100px){
+	.hi-bg.set-bg {
+		background-size: contain;
+		background-position: center;
+	}
+	
+}
+
+@media (max-width:1000px) and (min-width:790px){
+		.hero-item{
+		height: 100% !important;
+	}
 }
