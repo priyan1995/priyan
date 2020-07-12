@@ -595,6 +595,7 @@ ul, ol {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-attachment: fixed;
 }
 .page-top-warp h2 {
 	font-size: 80px;
