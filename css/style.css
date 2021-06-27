@@ -1364,3 +1364,8 @@ ul, ol {
   ::-webkit-scrollbar-thumb:hover {
 	background: #da0d2b; 
   }
+
+  .pd-company-credit{
+	font-size: 10px;
+    font-weight: 700;
+  }
