@@ -1340,6 +1340,11 @@ ul, ol {
 	width: 70%;
 }
 
+.about-item h2 .exp-sml{
+    display: block;
+    font-size: 20px;
+    margin-top: 14px;
+}
 
 /* ===scrollbar ==== */
 
