@@ -35,6 +35,13 @@ const data = {
             "link": "",
             "image": "img/projects/34.jpg",
             "companyCredit": "By Ideahub"
+        },
+         {
+            "title": "CV Winner",
+            "tech": "ReactJs",
+            "link": "https://priyan1995.github.io/cv-builder/",
+            "image": "img/projects/38.jpg",
+            "companyCredit": ""
         }
         , {
             "title": "Global Sea Foods",
