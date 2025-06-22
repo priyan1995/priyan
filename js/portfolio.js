@@ -11,7 +11,7 @@ const data = {
          {
             "title": "Codax",
             "tech": "HTML,CSS,JS",
-            "link": "",
+            "link": "https://priyan1995.github.io/Codax/",
             "image": "img/projects/36.jpg",
             "companyCredit": ""
         }, 
