@@ -2,6 +2,20 @@
 const data = {
     "projects": [
         {
+            "title": "Hatton National Bank",
+            "tech": "Fintech - ReactJs",
+            "link": "",
+            "image": "img/projects/33.jpg",
+            "companyCredit": "By Ideahub"
+        },
+        {
+            "title": "DFCC Bank",
+            "tech": "Fintech - ReactJs",
+            "link": "",
+            "image": "img/projects/34.jpg",
+            "companyCredit": "By Ideahub"
+        }
+        , {
             "title": "Global Sea Foods",
             "tech": "WordPress",
             "link": "https://gsffish.com/",
