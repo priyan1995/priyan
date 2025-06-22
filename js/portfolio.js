@@ -1,6 +1,13 @@
 
 const data = {
     "projects": [
+          {
+            "title": "SynergyBricks",
+            "tech": "Wordpress",
+            "link": "https://synergybricks.com/",
+            "image": "img/projects/35.jpg",
+            "companyCredit": ""
+        },
         {
             "title": "Hatton National Bank",
             "tech": "Fintech - ReactJs",
