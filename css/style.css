@@ -1298,6 +1298,11 @@ ul, ol {
     padding-bottom: 15px;
 }
 
+.pd-skills .col-lg-8{
+	padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 .ai-text a{
 	color:white;
 }
