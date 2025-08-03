@@ -1,21 +1,21 @@
 
 const data = {
     "projects": [
-          {
+        {
             "title": "Sherbet",
             "tech": "NextJs, Gsap",
             "link": "https://www.sherbetrewards.com/",
             "image": "img/projects/37.jpg",
             "companyCredit": "By Ideahub"
-        }, 
-         {
+        },
+        {
             "title": "Codax",
             "tech": "HTML,CSS,JS",
             "link": "https://priyan1995.github.io/Codax/",
             "image": "img/projects/36.jpg",
             "companyCredit": ""
-        }, 
-        ,{
+        },
+        , {
             "title": "SynergyBricks",
             "tech": "Wordpress",
             "link": "https://synergybricks.com/",
@@ -36,7 +36,7 @@ const data = {
             "image": "img/projects/34.jpg",
             "companyCredit": "By Ideahub"
         },
-         {
+        {
             "title": "CV Winner",
             "tech": "ReactJs",
             "link": "https://priyan1995.github.io/cv-builder/",
@@ -48,6 +48,13 @@ const data = {
             "tech": "WordPress",
             "link": "https://gsffish.com/",
             "image": "img/projects/29.jpg",
+            "companyCredit": ""
+        },
+        {
+            "title": "Detail Talent",
+            "tech": "WordPress",
+            "link": "https://detailtalent.com/",
+            "image": "img/projects/39.png",
             "companyCredit": ""
         },
         {
