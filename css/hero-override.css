@@ -134,3 +134,8 @@
     color: #ffffffa6 !important;
 }
 
+/* Hide site logo */
+.site-logo {
+    display: none !important;
+}
+
