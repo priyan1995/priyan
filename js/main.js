@@ -75,7 +75,7 @@ $(window).on('load', function() {
 		animateOut: 'fadeOut',
 		animateIn: 'fadeIn',
 		items: 1,
-		autoplay: true,
+		// autoplay: true,
 		smartSpeed: 1000,
 	});
 

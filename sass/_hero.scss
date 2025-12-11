@@ -113,10 +113,16 @@
     width: calc(100% - 650px);
     top: 0;
     right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 50px;
     @media #{$tab_device,$large_mobile,$small_mobile} {
         width: 100%;
         right: auto;
         left: 0;
+        justify-content: center;
+        padding-right: 0;
         &:after {
             position: absolute;
             content: "";
@@ -126,6 +132,21 @@
             top: 0;
             background: #000;
             @include opacity(0.8);
+        }
+    }
+    
+    .react-logo-svg {
+        width: 600px;
+        height: 600px;
+        max-width: 90%;
+        max-height: 90%;
+        @media #{$tab_device} {
+            width: 500px;
+            height: 500px;
+        }
+        @media #{$large_mobile,$small_mobile} {
+            width: 400px;
+            height: 400px;
         }
     }
  }
