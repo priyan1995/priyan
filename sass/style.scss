@@ -17,9 +17,6 @@
 
 //header
 @import 'header';
- 
-//hero
-@import 'hero';
 
 //footer
 @import 'footer';
@@ -35,7 +32,10 @@
  
 //Blog single Page
 @import 'blog-single';
- 
+
 //Contact Page
 @import 'contact-page';
+
+//hero (imported last for highest priority)
+@import 'hero';
  

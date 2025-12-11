@@ -22,13 +22,13 @@ $(window).on('load', function() {
 		Navigation
 	--------------------*/
 	$("#menu-canvas-show").on('click', function () {
-		$('.offcanvas-menu-wrapper').fadeIn(400, function () {
+		$('.offcanvas-menu-wrapper').fadeIn(200, function () {
 			$('.offcanvas-menu-wrapper').addClass('active');
 		}).css("display", "flex");
 	});
 	$("#menu-canvas-close").on('click', function () {
-		$('.offcanvas-menu-wrapper').removeClass('active').delay(1100);
-		$('.offcanvas-menu-wrapper').fadeOut(400);
+		$('.offcanvas-menu-wrapper').removeClass('active').delay(500);
+		$('.offcanvas-menu-wrapper').fadeOut(200);
 	});
 	
 

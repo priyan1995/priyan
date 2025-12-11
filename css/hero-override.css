@@ -1,0 +1,136 @@
+/* Hero Override - Highest Priority Styles */
+/* This file ensures hero.scss styles take precedence over other CSS */
+
+.hi-bg {
+    position: absolute !important;
+    height: 100% !important;
+    width: calc(100% - 650px) !important;
+    top: 0 !important;
+    right: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    padding-right: 50px !important;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+  only screen and (min-width: 576px) and (max-width: 767px),
+  (max-width: 576px) {
+    .hi-bg {
+        width: 100% !important;
+        right: auto !important;
+        left: 0 !important;
+        justify-content: center !important;
+        padding-right: 0 !important;
+    }
+}
+
+.hi-bg .react-logo-svg,
+.hi-bg .wordpress-logo-svg,
+.hi-bg .javascript-logo-svg {
+    width: 700px !important;
+    height: auto !important;
+    max-width: 95% !important;
+    max-height: 95vh !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+@media (max-width: 767px) {
+    .hi-bg .react-logo-svg,
+    .hi-bg .wordpress-logo-svg,
+    .hi-bg .javascript-logo-svg {
+        display: none !important;
+    }
+}
+
+.hi-bg .html-code-svg {
+    width: 700px !important;
+    height: auto !important;
+    max-width: 95% !important;
+    max-height: 95vh !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+@media (max-width: 767px) {
+    .hi-bg .html-code-svg {
+        display: none !important;
+    }
+}
+
+.hi-bg #laptop-canvas {
+    width: 600px !important;
+    height: 400px !important;
+    max-width: 90% !important;
+    max-height: 90% !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .hi-bg #laptop-canvas {
+        width: 500px !important;
+        height: 333px !important;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px),
+  (max-width: 576px) {
+    .hi-bg #laptop-canvas {
+        width: 400px !important;
+        height: 267px !important;
+    }
+}
+
+/* Remove drag-up animations for React Developer section */
+.hero-text.no-animation h2,
+.hero-text.no-animation p {
+    top: 0 !important;
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+}
+
+/* Remove pop-up animations from ht-cata and ht-btn */
+.hero-text.no-animation .ht-cata,
+.hero-text.no-animation .ht-btn {
+    top: 0 !important;
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+}
+
+/* Hide ht-cata and ht-btn initially for typing effect slides */
+.hero-text.no-animation.typing-effect .ht-cata,
+.hero-text.no-animation.typing-effect .ht-btn {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Hero text h2 styles */
+.hero-text h2 {
+    font-weight: 400 !important;
+    line-height: 92px !important;
+    margin-top: 11px !important;
+}
+
+/* Hero text ht-cata background */
+.hero-text .ht-cata {
+    background: #5454546b !important;
+}
+
+/* Owl carousel navigation buttons */
+.hero-slider .owl-nav button.owl-prev,
+.hero-slider .owl-nav button.owl-next {
+    border: 1px solid #ffffff1c !important;
+    color: #ffffffa6 !important;
+}
+

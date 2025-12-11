@@ -26,8 +26,8 @@
             display: inline-block;
             width: 46px;
             height: 46px;
-            border: 1px solid #fff;
-            color: #fff;
+            border: 1px solid #ffffff1c;
+            color: #ffffffa6;
             font-size: 20px;
             padding-top: 6px !important;
             border-radius: 1px;
@@ -73,7 +73,7 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         color: $white_color;
-        background: $primary_color;
+        background: #5454546b;
         position: relative;
         @include opacity(0);
         top: 50px;
@@ -81,7 +81,10 @@
 
     h2 {
         font-size: 80px;
+        font-weight: 400;
+        line-height: 92px;
         color: $white_color;
+        margin-top: 11px;
         margin-bottom: 30px;
         position: relative;
         @include opacity(0);
@@ -157,39 +160,31 @@
     .react-logo-svg,
     .wordpress-logo-svg,
     .javascript-logo-svg {
-        width: 600px;
-        height: 600px;
-        max-width: 90%;
-        max-height: 90%;
+        width: 700px;
+        height: auto;
+        max-width: 95%;
+        max-height: 95vh;
+        object-fit: contain;
+        display: block;
 
-        @media #{$tab_device} {
-            width: 500px;
-            height: 500px;
-        }
-
-        @media #{$large_mobile,$small_mobile} {
-            width: 400px;
-            height: 400px;
+        @media (max-width: 767px) {
+            display: none !important;
         }
     }
 
     .html-code-svg {
-        width: 600px;
-        height: 400px;
-        max-width: 90%;
-        max-height: 90%;
+        width: 700px;
+        height: auto;
+        max-width: 95%;
+        max-height: 95vh;
+        object-fit: contain;
+        display: block;
 
-        @media #{$tab_device} {
-            width: 500px;
-            height: 333px;
-        }
-
-        @media #{$large_mobile,$small_mobile} {
-            width: 400px;
-            height: 267px;
+        @media (max-width: 767px) {
+            display: none !important;
         }
     }
-    
+
     #laptop-canvas {
         width: 600px !important;
         height: 400px !important;
@@ -198,10 +193,12 @@
         display: block !important;
         position: relative !important;
         z-index: 1 !important;
+
         @media #{$tab_device} {
             width: 500px !important;
             height: 333px !important;
         }
+
         @media #{$large_mobile,$small_mobile} {
             width: 400px !important;
             height: 267px !important;
@@ -220,7 +217,7 @@
     }
 
     .ht-cata {
-        @include transition(all 0.5s ease 0.4s);
+        transition: none !important;
     }
 
     h2 {
@@ -232,6 +229,36 @@
     }
 
     .ht-btn {
-        @include transition(all 0.5s ease 1s);
+        transition: none !important;
+    }
+}
+
+// Remove drag-up animations for specific sections
+.hero-text.no-animation {
+
+    h2,
+    p {
+        top: 0 !important;
+        opacity: 1 !important;
+        filter: alpha(opacity=100) !important;
+        transition: none !important;
+    }
+
+    .ht-cata,
+    .ht-btn {
+        top: 0 !important;
+        opacity: 1 !important;
+        filter: alpha(opacity=100) !important;
+        transition: none !important;
+    }
+
+    // Hide ht-cata and ht-btn initially for typing effect slides
+    &.typing-effect {
+
+        .ht-cata,
+        .ht-btn {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
     }
 }

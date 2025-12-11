@@ -35,19 +35,19 @@
         top: 50px;
         @include opacity(0);
         &:nth-child(5) {
-            @include transition(all 0.5s ease 0s);
+            @include transition(all 0.25s ease 0s);
         }
         &:nth-child(4) {
-            @include transition(all 0.5s ease 0.2s);
+            @include transition(all 0.25s ease 0.05s);
         }
         &:nth-child(3) {
-            @include transition(all 0.5s ease 0.4s);
+            @include transition(all 0.25s ease 0.1s);
         }
         &:nth-child(2) {
-            @include transition(all 0.5s ease 0.6s);
+            @include transition(all 0.25s ease 0.15s);
         }
         &:nth-child(1) {
-            @include transition(all 0.5s ease 0.8s);
+            @include transition(all 0.25s ease 0.2s);
         }
         &:last-child {
             margin-bottom: 0;
@@ -84,26 +84,26 @@
     .menu-switch {
         top: 0;
         @include opacity(1);
-        @include transition(all 0.5s ease 0.2s);
+        @include transition(all 0.25s ease 0.05s);
     }
     .main-menu {
         li {
             top: 0;
             @include opacity(1);
             &:nth-child(1) {
-                @include transition(all 0.5s ease 0s);
+                @include transition(all 0.25s ease 0s);
             }
             &:nth-child(2) {
-                @include transition(all 0.5s ease 0.2s);
+                @include transition(all 0.25s ease 0.05s);
             }
             &:nth-child(3) {
-                @include transition(all 0.5s ease 0.4s);
+                @include transition(all 0.25s ease 0.1s);
             }
             &:nth-child(4) {
-                @include transition(all 0.5s ease 0.6s);
+                @include transition(all 0.25s ease 0.15s);
             }
             &:nth-child(5) {
-                @include transition(all 0.5s ease 0.8s);
+                @include transition(all 0.25s ease 0.2s);
             }
         }
     }

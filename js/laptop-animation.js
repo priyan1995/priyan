@@ -18,6 +18,7 @@
     let currentChar = 0;
     let typingSpeed = 100;
     let lineDelay = 800;
+    let typingTimeout = null;
 
     function init() {
         const canvas = document.getElementById('laptop-canvas');
@@ -172,8 +173,23 @@
     function startTyping() {
         if (!codeText || !codeText.userData.ctx) return;
 
+        // Clear any existing typing timeout
+        if (typingTimeout) {
+            clearTimeout(typingTimeout);
+            typingTimeout = null;
+        }
+
+        // Reset typing state
+        currentLine = 0;
+        currentChar = 0;
+
         const ctx = codeText.userData.ctx;
         const canvas = codeText.userData.canvas;
+
+        // Clear screen
+        ctx.fillStyle = '#252526';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        codeText.material.map.needsUpdate = true;
 
         function typeNextChar() {
             if (currentLine >= codeLines.length) {
@@ -182,6 +198,7 @@
                 // Clear screen
                 ctx.fillStyle = '#252526';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
+                codeText.material.map.needsUpdate = true;
             }
 
             const line = codeLines[currentLine];
@@ -211,16 +228,24 @@
                 codeText.material.map.needsUpdate = true;
 
                 currentChar++;
-                setTimeout(typeNextChar, typingSpeed);
+                typingTimeout = setTimeout(typeNextChar, typingSpeed);
             } else {
                 currentLine++;
                 currentChar = 0;
-                setTimeout(typeNextChar, lineDelay);
+                typingTimeout = setTimeout(typeNextChar, lineDelay);
             }
         }
 
-        typeNextChar();
+        // Start typing after a short delay
+        typingTimeout = setTimeout(typeNextChar, 500);
     }
+
+    // Expose restart function globally
+    window.restartLaptopAnimation = function() {
+        if (codeText && codeText.userData.ctx) {
+            startTyping();
+        }
+    };
 
     function animate() {
         if (!renderer || !scene || !camera) {
@@ -253,6 +278,32 @@
         renderer.setSize(width, height);
     }
 
+    // Check if canvas is visible and in active slide
+    function isCanvasVisible() {
+        const canvas = document.getElementById('laptop-canvas');
+        if (!canvas) return false;
+
+        // Check if canvas has dimensions
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return false;
+
+        // Check if parent slide is active
+        const heroItem = canvas.closest('.hero-item');
+        if (!heroItem) return false;
+
+        // Check if the slide is visible (not display: none)
+        const itemRect = heroItem.getBoundingClientRect();
+        if (itemRect.width === 0 || itemRect.height === 0) return false;
+
+        // Check if it's in an active owl-item
+        const owlItem = heroItem.closest('.owl-item');
+        if (owlItem && !owlItem.classList.contains('active')) {
+            return false;
+        }
+
+        return true;
+    }
+
     // Initialize when DOM is ready
     function startInit() {
         // Wait for Three.js to be available
@@ -268,55 +319,53 @@
                 return;
             }
 
-            // Check if canvas is in DOM and has dimensions
-            const rect = canvas.getBoundingClientRect();
-            if (rect.width === 0 || rect.height === 0) {
+            // Only initialize if canvas is visible and in active slide
+            if (!isCanvasVisible()) {
                 setTimeout(tryInit, 200);
                 return;
             }
 
-            // Initialize immediately
+            // Initialize if not already initialized
             if (!scene) {
                 init();
             }
         }
 
-        // Initialize when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                setTimeout(tryInit, 500);
-            });
-        } else {
-            setTimeout(tryInit, 500);
-        }
-
-        // Also listen for Owl Carousel slide changes
+        // Listen for Owl Carousel slide changes
         if (typeof jQuery !== 'undefined') {
             jQuery(document).ready(function ($) {
                 // Wait for slider to be initialized
                 setTimeout(function () {
+                    // Listen for slide changes
                     $('.hero-slider').on('changed.owl.carousel', function (event) {
                         // Check if the WordPress slide (index 1) is active
                         const activeIndex = event.item.index;
                         const heroItems = $('.hero-item');
-                        if (heroItems.length > 1 && activeIndex === 1) {
-                            setTimeout(tryInit, 300);
+                        
+                        // Check if active slide contains the canvas
+                        const activeItem = $('.hero-slider .owl-item.active .hero-item');
+                        if (activeItem.find('#laptop-canvas').length > 0) {
+                            setTimeout(function() {
+                                if (!scene) {
+                                    tryInit();
+                                }
+                            }, 300);
                         }
                     });
 
-                    // Also check initial slide
+                    // Check initial slide after slider is ready
                     setTimeout(function () {
                         const activeItem = $('.hero-slider .owl-item.active .hero-item');
                         if (activeItem.find('#laptop-canvas').length > 0) {
                             setTimeout(tryInit, 300);
                         }
-                    }, 1000);
-                }, 1500);
+                    }, 1500);
+                }, 1000);
             });
         }
 
         // Fallback: try after longer delay
-        setTimeout(tryInit, 3000);
+        setTimeout(tryInit, 2000);
     }
 
     startInit();
