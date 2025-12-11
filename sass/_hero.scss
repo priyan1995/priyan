@@ -1,24 +1,28 @@
 /*---------------------
    Hero section
  -----------------------*/
- .hero-section {
+.hero-section {
     position: relative;
     z-index: 1;
+
     @media #{$tab_device} {
         padding: 0 40px;
     }
- }
- .hero-slider {
+}
+
+.hero-slider {
     .owl-nav {
         position: absolute;
         right: 30px;
         bottom: 30px;
+
         @media #{$large_mobile,$small_mobile} {
             right: calc(50% - 51px);
             bottom: 50px;
         }
+
         button.owl-prev,
-        button.owl-next{
+        button.owl-next {
             display: inline-block;
             width: 46px;
             height: 46px;
@@ -28,86 +32,99 @@
             padding-top: 6px !important;
             border-radius: 1px;
             @include transition(all 0.4s);
+
             &:hover {
                 background: $primary_color;
                 border-color: $primary_color;
             }
         }
-        button.owl-prev{
+
+        button.owl-prev {
             margin-right: 10px;
         }
     }
- }
- .hero-item {
-     position: relative;
-     display: flex;
-     align-items: center;
-     
 }
- .hero-text {
-     position: relative;
-     padding-left: 80px;
-     max-width: 595px;
-     z-index: 5;
-     @media #{$large_mobile,$small_mobile} {
+
+.hero-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.hero-text {
+    position: relative;
+    padding-left: 80px;
+    max-width: 595px;
+    z-index: 5;
+
+    @media #{$large_mobile,$small_mobile} {
         padding: 100px 20px 150px;
         text-align: center;
         margin: 0 auto;
     }
-     .ht-cata {
-         display: inline-block;
-         padding: 5px 18px 4px;
-         margin-bottom: 20px;
-         font-weight: 500;
-         font-size: 14px;
-         text-transform: uppercase;
-         letter-spacing: 2px;
-         color: $white_color;
-         background: $primary_color;
-         position: relative;
-         @include opacity(0);
-         top: 50px;
-     }
-     h2 {
-         font-size: 80px;
-         color: $white_color;
-         margin-bottom: 30px;
-         position: relative;
-         @include opacity(0);
-         top: 50px;
-         @media #{$large_mobile} {
+
+    .ht-cata {
+        display: inline-block;
+        padding: 5px 18px 4px;
+        margin-bottom: 20px;
+        font-weight: 500;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: $white_color;
+        background: $primary_color;
+        position: relative;
+        @include opacity(0);
+        top: 50px;
+    }
+
+    h2 {
+        font-size: 80px;
+        color: $white_color;
+        margin-bottom: 30px;
+        position: relative;
+        @include opacity(0);
+        top: 50px;
+
+        @media #{$large_mobile} {
             font-size: 60px;
         }
+
         @media #{$small_mobile} {
             font-size: 40px;
         }
-     }
-     p {
-         font-size: 18px;
-         margin-bottom: 35px;
-         position: relative;
-         @include opacity(0);
-         top: 50px;
-     }
-     .ht-btn {
-         color: $white_color;
-         font-size: 16px;
-         font-weight: 500;
-         text-transform: uppercase;
-         letter-spacing: 1px;
-         position: relative;
-         @include opacity(0);
-         top: 50px;
-         i {
-             font-size: 24px;
-             position: relative;
-             top: 5px;
-             color: $primary_color;
-             margin-left: 5px;
+    }
+
+    p {
+        font-size: 18px;
+        margin-bottom: 35px;
+        position: relative;
+        @include opacity(0);
+        top: 50px;
+    }
+
+    .ht-btn {
+        color: $white_color;
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        @include opacity(0);
+        top: 50px;
+
+        i {
+            font-size: 24px;
+            position: relative;
+            top: 5px;
+            color: $primary_color;
+            margin-left: 5px;
         }
     }
- }
- .hi-bg {
+}
+
+.hi-bg {
     position: absolute;
     height: 100%;
     width: calc(100% - 650px);
@@ -117,12 +134,14 @@
     align-items: center;
     justify-content: flex-end;
     padding-right: 50px;
+
     @media #{$tab_device,$large_mobile,$small_mobile} {
         width: 100%;
         right: auto;
         left: 0;
         justify-content: center;
         padding-right: 0;
+
         &:after {
             position: absolute;
             content: "";
@@ -134,39 +153,67 @@
             @include opacity(0.8);
         }
     }
-    
+
     .react-logo-svg,
-    .wordpress-logo-svg {
+    .wordpress-logo-svg,
+    .javascript-logo-svg {
         width: 600px;
         height: 600px;
         max-width: 90%;
         max-height: 90%;
+
         @media #{$tab_device} {
             width: 500px;
             height: 500px;
         }
+
         @media #{$large_mobile,$small_mobile} {
             width: 400px;
             height: 400px;
         }
     }
- }
 
- .owl-item.active .hero-text {
-    h2,p,.ht-cata,.ht-btn {
-      top: 0;
-      @include opacity(1);
+    .html-code-svg {
+        width: 600px;
+        height: 400px;
+        max-width: 90%;
+        max-height: 90%;
+
+        @media #{$tab_device} {
+            width: 500px;
+            height: 333px;
+        }
+
+        @media #{$large_mobile,$small_mobile} {
+            width: 400px;
+            height: 267px;
+        }
     }
-    .ht-cata {
-      @include transition(all 0.5s ease 0.4s);
-    }
-    h2 {
-      @include transition(all 0.5s ease 0.6s);
-    }
-    p {
-      @include transition(all 0.5s ease 0.8s);
-    }
+}
+
+.owl-item.active .hero-text {
+
+    h2,
+    p,
+    .ht-cata,
     .ht-btn {
-      @include transition(all 0.5s ease 1s);
+        top: 0;
+        @include opacity(1);
+    }
+
+    .ht-cata {
+        @include transition(all 0.5s ease 0.4s);
+    }
+
+    h2 {
+        @include transition(all 0.5s ease 0.6s);
+    }
+
+    p {
+        @include transition(all 0.5s ease 0.8s);
+    }
+
+    .ht-btn {
+        @include transition(all 0.5s ease 1s);
     }
 }
