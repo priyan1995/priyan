@@ -4,6 +4,8 @@
 
 .gallery-section {
     padding: 0 40px 80px;
+    position: relative;
+    z-index: 1;
 }
 .gallery-item {
     display: block;

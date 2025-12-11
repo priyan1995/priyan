@@ -3,6 +3,8 @@
  ------------------*/
  .page-top-section {
     padding: 0 40px;
+    position: relative;
+    z-index: 1;
  }
  .page-top-warp {
      height: 500px;
@@ -32,6 +34,8 @@
 
  .about-section {
      padding-top: 82px;
+     position: relative;
+     z-index: 1;
  }
 
  .about-item {
