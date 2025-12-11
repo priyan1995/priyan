@@ -125,15 +125,15 @@
 }
 
 .hi-bg {
-    position: absolute;
-    height: 100%;
-    width: calc(100% - 650px);
-    top: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 50px;
+    position: absolute !important;
+    height: 100% !important;
+    width: calc(100% - 650px) !important;
+    top: 0 !important;
+    right: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    padding-right: 50px !important;
 
     @media #{$tab_device,$large_mobile,$small_mobile} {
         width: 100%;
@@ -187,6 +187,24 @@
         @media #{$large_mobile,$small_mobile} {
             width: 400px;
             height: 267px;
+        }
+    }
+    
+    #laptop-canvas {
+        width: 600px !important;
+        height: 400px !important;
+        max-width: 90% !important;
+        max-height: 90% !important;
+        display: block !important;
+        position: relative !important;
+        z-index: 1 !important;
+        @media #{$tab_device} {
+            width: 500px !important;
+            height: 333px !important;
+        }
+        @media #{$large_mobile,$small_mobile} {
+            width: 400px !important;
+            height: 267px !important;
         }
     }
 }
