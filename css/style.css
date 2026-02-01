@@ -515,6 +515,18 @@ ol {
     filter: alpha(opacity=80);
   }
 }
+/* Hide SVGs in non-active slides; only show when slide is active */
+.hero-slider .owl-item:not(.active) .hi-bg .hero-slide-svg {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-slider .owl-item.active .hi-bg .hero-slide-svg {
+  visibility: visible;
+  opacity: 1;
+}
+
 .owl-item.active .hero-text h2,
 .owl-item.active .hero-text p,
 .owl-item.active .hero-text .ht-cata,
