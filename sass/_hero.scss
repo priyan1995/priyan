@@ -62,6 +62,7 @@
         padding: 100px 20px 150px;
         text-align: center;
         margin: 0 auto;
+        min-height: 92vh;
     }
 
     .ht-cata {
@@ -92,10 +93,12 @@
 
         @media #{$large_mobile} {
             font-size: 60px;
+            line-height: 53px !important;
         }
 
         @media #{$small_mobile} {
             font-size: 40px;
+            line-height: 53px !important;
         }
     }
 
@@ -136,7 +139,7 @@
     display: flex !important;
     align-items: center !important;
     justify-content: flex-end !important;
-    padding-right: 50px !important;
+    padding-right: 20px !important;
 
     @media #{$tab_device,$large_mobile,$small_mobile} {
         width: 100%;
