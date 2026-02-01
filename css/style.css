@@ -6,6 +6,7 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   background: #151515;
+  overflow-x: hidden;
 }
 
 h1,
@@ -638,7 +639,6 @@ ol {
 
 .page-top-section {
   padding: 0 40px;
-  overflow: hidden;
 }
 .page-top-warp {
   height: 500px;
