@@ -116,7 +116,7 @@ ol {
   padding: 17px 25px;
   min-width: 170px;
   color: #fff;
-  background: #da0d2b;
+  background: #fcc257;
   line-height: 1;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -279,7 +279,7 @@ ol {
 }
 .main-menu li a:hover,
 .main-menu li a.active {
-  color: #da0d2b;
+  color: #fcc257;
 }
 .menu-footer {
   padding: 26px 40px 22px;
@@ -397,8 +397,8 @@ ol {
 }
 .hero-slider .owl-nav button.owl-prev:hover,
 .hero-slider .owl-nav button.owl-next:hover {
-  background: #da0d2b;
-  border-color: #da0d2b;
+  background: #fcc257;
+  border-color: #fcc257;
 }
 .hero-slider .owl-nav button.owl-prev {
   margin-right: 10px;
@@ -431,7 +431,7 @@ ol {
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #fff;
-  background: #da0d2b6b;
+  background: #fcc2576b;
   position: relative;
   opacity: 0;
   filter: alpha(opacity=0);
@@ -482,7 +482,7 @@ ol {
   font-size: 24px;
   position: relative;
   top: 5px;
-  color: #da0d2b;
+  color: #fcc257;
   margin-left: 5px;
 }
 .hi-bg {
@@ -599,7 +599,7 @@ ol {
   height: 2px;
   left: 0;
   bottom: -2px;
-  background: #da0d2b;
+  background: #fcc257;
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
   -o-transition: all 0.4s;
@@ -771,7 +771,7 @@ ol {
   transition: all 0.4s;
 }
 .team-meta .tm-social a:hover {
-  color: #da0d2b;
+  color: #fcc257;
   background: #fff;
 }
 /*------------------
@@ -865,7 +865,7 @@ ol {
   background-color: transparent;
 }
 .fr-thumbnail-active {
-  border: 2px solid #da0d2b;
+  border: 2px solid #fcc257;
 }
 /*----------------
    Blog Page
@@ -901,7 +901,7 @@ ol {
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #fff;
-  background: #da0d2b;
+  background: #fcc257;
 }
 .feature-blog h2 {
   font-size: 80px;
@@ -960,7 +960,7 @@ ol {
   text-align: center;
   letter-spacing: 2px;
   color: #fff;
-  background: #da0d2b;
+  background: #fcc257;
 }
 .blog-item .blog-text h6 {
   font-size: 20px;
@@ -1076,7 +1076,7 @@ ol {
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #fff;
-  background: #da0d2b;
+  background: #fcc257;
 }
 .blog-single-header h2 {
   font-size: 80px;
@@ -1152,7 +1152,7 @@ ol {
   text-align: center;
   letter-spacing: 2px;
   color: #fff;
-  background: #da0d2b;
+  background: #fcc257;
 }
 .blog-content .post-share span {
   display: inline-block;
@@ -1168,7 +1168,7 @@ ol {
   padding: 0 2px;
 }
 .blog-content .post-share a:hover {
-  color: #da0d2b;
+  color: #fcc257;
 }
 .recent-blog.blog-item {
   height: 352px;
@@ -1276,7 +1276,7 @@ ol {
   left: 0;
   top: 2px;
   font-size: 18px;
-  color: #da0d2b;
+  color: #fcc257;
 }
 .contact-form label {
   font-size: 18px;
@@ -1430,13 +1430,13 @@ ol {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #da0d2b;
+  background: #fcc257;
   border-radius: 32px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #da0d2b;
+  background: #fcc257;
 }
 
 .pd-company-credit {
