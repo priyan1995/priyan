@@ -37,6 +37,13 @@ const data = {
             "companyCredit": "By Ideahub"
         },
         {
+            "title": "Pan Asia Bank",
+            "tech": "Fintech - ReactJs",
+            "link": "",
+            "image": "img/projects/40.png",
+            "companyCredit": "By Ideahub"
+        },
+        {
             "title": "CV Winner",
             "tech": "ReactJs",
             "link": "https://priyan1995.github.io/cv-builder/",
