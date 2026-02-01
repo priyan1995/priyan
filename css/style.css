@@ -849,6 +849,7 @@ ol {
 .page-top-warp p {
   font-size: 18px;
   padding-right: 50px;
+  color: white;
 }
 @media only screen and (min-width: 576px) and (max-width: 767px),
   (max-width: 576px) {
