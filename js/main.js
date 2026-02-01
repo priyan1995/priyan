@@ -30,6 +30,10 @@ $(window).on('load', function () {
 		$('.offcanvas-menu-wrapper').removeClass('active').delay(220);
 		$('.offcanvas-menu-wrapper').fadeOut(150);
 	});
+	$('.main-menu a').on('click', function () {
+		$('.offcanvas-menu-wrapper').removeClass('active').delay(220);
+		$('.offcanvas-menu-wrapper').fadeOut(150);
+	});
 
 
 	/*------------------

@@ -371,41 +371,47 @@ ol {
   opacity: 0;
   filter: alpha(opacity=0);
 }
-.main-menu li:nth-child(5) {
+.main-menu li:nth-child(6) {
   -webkit-transition: all 0.18s ease 0s;
   -moz-transition: all 0.18s ease 0s;
   -o-transition: all 0.18s ease 0s;
   transition: all 0.18s ease 0s;
 }
-.main-menu li:nth-child(4) {
+.main-menu li:nth-child(5) {
   -webkit-transition: all 0.18s ease 0.03s;
   -moz-transition: all 0.18s ease 0.03s;
   -o-transition: all 0.18s ease 0.03s;
   transition: all 0.18s ease 0.03s;
 }
-.main-menu li:nth-child(3) {
+.main-menu li:nth-child(4) {
   -webkit-transition: all 0.18s ease 0.06s;
   -moz-transition: all 0.18s ease 0.06s;
   -o-transition: all 0.18s ease 0.06s;
   transition: all 0.18s ease 0.06s;
 }
-.main-menu li:nth-child(2) {
+.main-menu li:nth-child(3) {
   -webkit-transition: all 0.18s ease 0.09s;
   -moz-transition: all 0.18s ease 0.09s;
   -o-transition: all 0.18s ease 0.09s;
   transition: all 0.18s ease 0.09s;
 }
-.main-menu li:nth-child(1) {
+.main-menu li:nth-child(2) {
   -webkit-transition: all 0.18s ease 0.12s;
   -moz-transition: all 0.18s ease 0.12s;
   -o-transition: all 0.18s ease 0.12s;
   transition: all 0.18s ease 0.12s;
 }
+.main-menu li:nth-child(1) {
+  -webkit-transition: all 0.18s ease 0.15s;
+  -moz-transition: all 0.18s ease 0.15s;
+  -o-transition: all 0.18s ease 0.15s;
+  transition: all 0.18s ease 0.15s;
+}
 .main-menu li:last-child {
   margin-bottom: 0;
 }
 .main-menu li a {
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 700;
   color: #fff;
   font-family: "Roboto", sans-serif;
@@ -476,6 +482,12 @@ ol {
   -moz-transition: all 0.18s ease 0.12s;
   -o-transition: all 0.18s ease 0.12s;
   transition: all 0.18s ease 0.12s;
+}
+.active .main-menu li:nth-child(6) {
+  -webkit-transition: all 0.18s ease 0.15s;
+  -moz-transition: all 0.18s ease 0.15s;
+  -o-transition: all 0.18s ease 0.15s;
+  transition: all 0.18s ease 0.15s;
 }
 /*---------------------
    Header section

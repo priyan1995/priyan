@@ -37,24 +37,28 @@
         top: 50px;
         @include opacity(0);
 
-        &:nth-child(5) {
+        &:nth-child(6) {
             @include transition(all 0.18s ease 0s);
         }
 
-        &:nth-child(4) {
+        &:nth-child(5) {
             @include transition(all 0.18s ease 0.03s);
         }
 
-        &:nth-child(3) {
+        &:nth-child(4) {
             @include transition(all 0.18s ease 0.06s);
         }
 
-        &:nth-child(2) {
+        &:nth-child(3) {
             @include transition(all 0.18s ease 0.09s);
         }
 
-        &:nth-child(1) {
+        &:nth-child(2) {
             @include transition(all 0.18s ease 0.12s);
+        }
+
+        &:nth-child(1) {
+            @include transition(all 0.18s ease 0.15s);
         }
 
         &:last-child {
@@ -62,7 +66,7 @@
         }
 
         a {
-            font-size: 48px;
+            font-size: 32px;
             font-weight: 700;
             color: $white_color;
             font-family: $font_2;
@@ -122,6 +126,10 @@
 
             &:nth-child(5) {
                 @include transition(all 0.18s ease 0.12s);
+            }
+
+            &:nth-child(6) {
+                @include transition(all 0.18s ease 0.15s);
             }
         }
     }
