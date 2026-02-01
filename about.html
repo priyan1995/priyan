@@ -38,21 +38,23 @@
 	<!-- Offcanvas Menu Section -->
 	<div class="offcanvas-menu-wrapper">
 		<div class="menu-header">
-			<a href="./index.html" class="site-logo">
+			<!-- <a href="./index.html" class="site-logo">
 				<img src="img/logo.png" alt="">
-			</a>
+			</a> -->
 			<div class="menu-switch" id="menu-canvas-close">
 				<i class="icon_close"></i>
 			</div>
 		</div>
 		<ul class="main-menu">
-			<li><a href="index.html" class="active">Home</a></li>
+			<li><a href="index.html">Home</a></li>
 			<li><a href="portfolio.html">Portfolio</a></li>
-			<li><a href="about.html">About</a></li>
+			<li><a href="about.html" class="active">About</a></li>
+			<li><a href="#employment-history">Employment History</a></li>
+			<li><a href="#skills">Skills</a></li>
+			<li><a href="#contact">Contact</a></li>
 		</ul>
 		<div class="menu-footer">
 			<div class="footer-social">
-				<a target="_blank" href="">Facebook</a>
 				<a target="_blank" href="https://www.linkedin.com/in/priyan-darshana-487a571b1/">LinkedIn</a>
 				<a target="_blank" href="https://github.com/priyan1995">Github</a>
 			</div>
@@ -69,9 +71,9 @@
 
 	<!-- Header section -->
 	<header class="header-section">
-		<a href="./index.html" class="site-logo">
+		<!-- <a href="./index.html" class="site-logo">
 			<img src="img/logo.png" alt="">
-		</a>
+		</a> -->
 		<div class="menu-switch" id="menu-canvas-show">
 			<i class="icon_menu"></i>
 		</div>
@@ -80,9 +82,13 @@
 
 	<!-- Page top section -->
 	<div class="page-top-section">
-		<div class="page-top-warp set-bg" data-setbg="img/page-abt-bg.jpg">
+		<div class="page-top-warp set-bg">
 			<div class="container">
 				<div class="row pd-just-centered">
+					<div class="page-top-decoration">
+						<object data="img/page-top-decoration.svg" type="image/svg+xml" class="page-top-decoration-svg"
+							aria-hidden="true"></object>
+					</div>
 					<div class="col-lg-8">
 						<h2>Priyan Darshana</h2>
 						<p>Front-End Developer | Web Developer | Wordpress Developer | UI UX Engineer</p>
@@ -150,9 +156,9 @@
 				</div>
 			</div>
 			<!-- ==== employement history ==== -->
-			<div class="row about-item emp-history">
+			<div class="row about-item emp-history" id="employment-history">
 				<div class="col-lg-3">
-					<h2>Employment History <span class="exp-sml">(6+ Years)</span></h2>
+					<h2>Employment History <span class="exp-sml">(7+ Years)</span></h2>
 				</div>
 				<div class="col-lg-9">
 
@@ -248,7 +254,7 @@
 			</div>
 
 			<!-- ==== skills section ==== -->
-			<div class="row about-item pd-skills">
+			<div class="row about-item pd-skills" id="skills">
 				<div class="col-lg-3">
 					<h2>Skills</h2>
 				</div>
@@ -522,6 +528,13 @@
 						</div>
 					</div>
 
+					<!-- item -->
+					<div class="col-lg-4">
+						<div class="pd-card">
+							<h4>AI-assisted development (Cursor IDE)</h4>
+						</div>
+					</div>
+
 				</div>
 
 			</div>
@@ -545,7 +558,7 @@
 			</div>
 
 			<!-- ==== Contact Details ==== -->
-			<div class="row about-item other-skills">
+			<div class="row about-item other-skills" id="contact">
 				<div class="col-lg-3">
 					<h2>Contact Details</h2>
 				</div>
@@ -557,9 +570,6 @@
 							<a href="https://www.linkedin.com/in/priyan-darshana-487a571b1/" target="_blank">
 								<i class="fab fa-linkedin"></i>
 							</a>
-							<!-- <a href="https://www.facebook.com/priyan.darshana.1/" target="_blank">
-								<i class="fab fa-facebook-square"></i>
-							</a> -->
 							<a href="https://wa.me/+941251080" target="_blank">
 								<i class="fab fa-whatsapp-square"></i>
 							</a>
@@ -575,7 +585,6 @@
 	<!-- Footer section -->
 	<footer class="footer-section">
 		<div class="footer-social">
-			<a target="_blank" href="">Facebook</a>
 			<a target="_blank" href="https://www.linkedin.com/in/priyan-darshana-487a571b1/">LinkedIn</a>
 			<a target="_blank" href="https://github.com/priyan1995">Github</a>
 		</div>
@@ -596,6 +605,8 @@
 	<script src="js/masonry.pkgd.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/particles-init.js"></script>
+	<script src="js/cursor-magnet.js"></script>
+	<script src="js/custom-cursor.js"></script>
 
 </body>
 

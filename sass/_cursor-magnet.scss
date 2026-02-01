@@ -1,0 +1,27 @@
+/*---------------------
+   Cursor Magnet - GPU-accelerated transforms
+   Disable transition on transform for smooth RAF-driven updates
+   -----------------------*/
+.cursor-magnet,
+a.ht-btn,
+.pd-card,
+.gallery-item,
+.main-menu a,
+.menu-switch,
+.footer-social a {
+	will-change: transform;
+	transition-property: opacity, color, background-color, border-color;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.cursor-magnet,
+	a.ht-btn,
+	.pd-card,
+	.gallery-item,
+	.main-menu a,
+	.menu-switch,
+	.footer-social a {
+		will-change: auto;
+	}
+}
