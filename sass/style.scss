@@ -1,6 +1,5 @@
-
- @import 'varriable';
- @import '_mixins';
+@import 'varriable';
+@import '_mixins';
 
 
 // default
@@ -11,7 +10,7 @@
 
 //loader
 @import 'loader';
- 
+
 // Menu
 @import 'menu';
 
@@ -26,16 +25,24 @@
 
 //Gallery Page
 @import 'gallery-page';
- 
+
 //Blog Page
 @import 'blog-page';
- 
+
 //Blog single Page
 @import 'blog-single';
 
 //Contact Page
 @import 'contact-page';
 
+//Scroll Reveal - viewport animations
+@import 'scroll-reveal';
+
+//Cursor Magnet - interactive element transforms
+@import 'cursor-magnet';
+
+//Custom Cursor - raindrop with trail
+@import 'custom-cursor';
+
 //hero (imported last for highest priority)
 @import 'hero';
- 

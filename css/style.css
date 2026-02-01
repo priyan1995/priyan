@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap");
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   height: 100%;
@@ -45,6 +49,140 @@ p {
 img {
   max-width: 100%;
 }
+
+/* Cursor Magnet - GPU-accelerated transforms */
+.cursor-magnet,
+a.ht-btn,
+.pd-card,
+.gallery-item,
+.main-menu a,
+.menu-switch,
+.footer-social a {
+  will-change: transform;
+  transition-property: opacity, color, background-color, border-color;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-magnet,
+  a.ht-btn,
+  .pd-card,
+  .gallery-item,
+  .main-menu a,
+  .menu-switch,
+  .footer-social a {
+    will-change: auto;
+  }
+}
+
+/* Custom Cursor - raindrop with trail */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 32px;
+  margin-left: -12px;
+  margin-top: -16px;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(0, 0);
+}
+
+.custom-cursor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50% 50% 50% 0;
+  transform: translateX(-50%) rotate(-45deg);
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.95),
+    #fcc257
+  );
+  box-shadow:
+    0 0 12px rgba(252, 194, 87, 0.6),
+    inset 0 0 6px rgba(255, 255, 255, 0.5);
+}
+
+.custom-cursor.custom-cursor-visible {
+  opacity: 1;
+}
+
+.custom-cursor::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  width: 8px;
+  height: 14px;
+  border-radius: 50% 50% 50% 0;
+  transform: translateX(-50%) rotate(-45deg);
+  background: rgba(252, 194, 87, 0.5);
+  filter: blur(2px);
+}
+
+.custom-cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999998;
+}
+
+.cursor-droplet {
+  position: fixed;
+  width: 6px;
+  height: 8px;
+  margin-left: -3px;
+  margin-top: -4px;
+  border-radius: 50% 50% 50% 0;
+  transform: translate(0, 0) rotate(-45deg) scale(0.5);
+  opacity: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.7),
+    rgba(252, 194, 87, 0.5)
+  );
+  box-shadow: 0 0 6px rgba(252, 194, 87, 0.5);
+  transition:
+    opacity 0.15s ease,
+    transform 0.8s ease-out;
+}
+
+.cursor-droplet.cursor-droplet-visible {
+  opacity: 0.8;
+  transform: translate(0, 20px) rotate(-45deg) scale(1);
+}
+
+.cursor-droplet.cursor-droplet-gone {
+  opacity: 0;
+  transform: translate(0, 40px) rotate(-45deg) scale(0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: auto !important;
+  }
+
+  .custom-cursor,
+  .custom-cursor-trail {
+    display: none !important;
+  }
+}
+
 input:focus,
 select:focus,
 button:focus,
