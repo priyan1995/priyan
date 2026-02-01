@@ -372,34 +372,34 @@ ol {
   filter: alpha(opacity=0);
 }
 .main-menu li:nth-child(5) {
-  -webkit-transition: all 0.5s ease 0s;
-  -moz-transition: all 0.5s ease 0s;
-  -o-transition: all 0.5s ease 0s;
-  transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.18s ease 0s;
+  -moz-transition: all 0.18s ease 0s;
+  -o-transition: all 0.18s ease 0s;
+  transition: all 0.18s ease 0s;
 }
 .main-menu li:nth-child(4) {
-  -webkit-transition: all 0.5s ease 0.2s;
-  -moz-transition: all 0.5s ease 0.2s;
-  -o-transition: all 0.5s ease 0.2s;
-  transition: all 0.5s ease 0.2s;
+  -webkit-transition: all 0.18s ease 0.03s;
+  -moz-transition: all 0.18s ease 0.03s;
+  -o-transition: all 0.18s ease 0.03s;
+  transition: all 0.18s ease 0.03s;
 }
 .main-menu li:nth-child(3) {
-  -webkit-transition: all 0.5s ease 0.4s;
-  -moz-transition: all 0.5s ease 0.4s;
-  -o-transition: all 0.5s ease 0.4s;
-  transition: all 0.5s ease 0.4s;
+  -webkit-transition: all 0.18s ease 0.06s;
+  -moz-transition: all 0.18s ease 0.06s;
+  -o-transition: all 0.18s ease 0.06s;
+  transition: all 0.18s ease 0.06s;
 }
 .main-menu li:nth-child(2) {
-  -webkit-transition: all 0.5s ease 0.6s;
-  -moz-transition: all 0.5s ease 0.6s;
-  -o-transition: all 0.5s ease 0.6s;
-  transition: all 0.5s ease 0.6s;
+  -webkit-transition: all 0.18s ease 0.09s;
+  -moz-transition: all 0.18s ease 0.09s;
+  -o-transition: all 0.18s ease 0.09s;
+  transition: all 0.18s ease 0.09s;
 }
 .main-menu li:nth-child(1) {
-  -webkit-transition: all 0.5s ease 0.8s;
-  -moz-transition: all 0.5s ease 0.8s;
-  -o-transition: all 0.5s ease 0.8s;
-  transition: all 0.5s ease 0.8s;
+  -webkit-transition: all 0.18s ease 0.12s;
+  -moz-transition: all 0.18s ease 0.12s;
+  -o-transition: all 0.18s ease 0.12s;
+  transition: all 0.18s ease 0.12s;
 }
 .main-menu li:last-child {
   margin-bottom: 0;
@@ -409,7 +409,7 @@ ol {
   font-weight: 700;
   color: #fff;
   font-family: "Roboto", sans-serif;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 @media (max-width: 576px) {
   .main-menu li a {
@@ -437,10 +437,10 @@ ol {
   top: 0;
   opacity: 1;
   filter: alpha(opacity=100);
-  -webkit-transition: all 0.5s ease 0.2s;
-  -moz-transition: all 0.5s ease 0.2s;
-  -o-transition: all 0.5s ease 0.2s;
-  transition: all 0.5s ease 0.2s;
+  -webkit-transition: all 0.18s ease 0.03s;
+  -moz-transition: all 0.18s ease 0.03s;
+  -o-transition: all 0.18s ease 0.03s;
+  transition: all 0.18s ease 0.03s;
 }
 .active .main-menu li {
   top: 0;
@@ -448,34 +448,34 @@ ol {
   filter: alpha(opacity=100);
 }
 .active .main-menu li:nth-child(1) {
-  -webkit-transition: all 0.5s ease 0s;
-  -moz-transition: all 0.5s ease 0s;
-  -o-transition: all 0.5s ease 0s;
-  transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.18s ease 0s;
+  -moz-transition: all 0.18s ease 0s;
+  -o-transition: all 0.18s ease 0s;
+  transition: all 0.18s ease 0s;
 }
 .active .main-menu li:nth-child(2) {
-  -webkit-transition: all 0.5s ease 0.2s;
-  -moz-transition: all 0.5s ease 0.2s;
-  -o-transition: all 0.5s ease 0.2s;
-  transition: all 0.5s ease 0.2s;
+  -webkit-transition: all 0.18s ease 0.03s;
+  -moz-transition: all 0.18s ease 0.03s;
+  -o-transition: all 0.18s ease 0.03s;
+  transition: all 0.18s ease 0.03s;
 }
 .active .main-menu li:nth-child(3) {
-  -webkit-transition: all 0.5s ease 0.4s;
-  -moz-transition: all 0.5s ease 0.4s;
-  -o-transition: all 0.5s ease 0.4s;
-  transition: all 0.5s ease 0.4s;
+  -webkit-transition: all 0.18s ease 0.06s;
+  -moz-transition: all 0.18s ease 0.06s;
+  -o-transition: all 0.18s ease 0.06s;
+  transition: all 0.18s ease 0.06s;
 }
 .active .main-menu li:nth-child(4) {
-  -webkit-transition: all 0.5s ease 0.6s;
-  -moz-transition: all 0.5s ease 0.6s;
-  -o-transition: all 0.5s ease 0.6s;
-  transition: all 0.5s ease 0.6s;
+  -webkit-transition: all 0.18s ease 0.09s;
+  -moz-transition: all 0.18s ease 0.09s;
+  -o-transition: all 0.18s ease 0.09s;
+  transition: all 0.18s ease 0.09s;
 }
 .active .main-menu li:nth-child(5) {
-  -webkit-transition: all 0.5s ease 0.8s;
-  -moz-transition: all 0.5s ease 0.8s;
-  -o-transition: all 0.5s ease 0.8s;
-  transition: all 0.5s ease 0.8s;
+  -webkit-transition: all 0.18s ease 0.12s;
+  -moz-transition: all 0.18s ease 0.12s;
+  -o-transition: all 0.18s ease 0.12s;
+  transition: all 0.18s ease 0.12s;
 }
 /*---------------------
    Header section

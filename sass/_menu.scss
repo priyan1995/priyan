@@ -9,6 +9,7 @@
     z-index: 9999;
     align-items: center;
     justify-content: center;
+
     .menu-switch {
         position: relative;
         top: 50px;
@@ -28,39 +29,49 @@
     list-style: none;
     display: inline-block;
     text-align: center;
+
     li {
         display: block;
         margin-bottom: 15px;
         position: relative;
         top: 50px;
         @include opacity(0);
+
         &:nth-child(5) {
-            @include transition(all 0.25s ease 0s);
+            @include transition(all 0.18s ease 0s);
         }
+
         &:nth-child(4) {
-            @include transition(all 0.25s ease 0.05s);
+            @include transition(all 0.18s ease 0.03s);
         }
+
         &:nth-child(3) {
-            @include transition(all 0.25s ease 0.1s);
+            @include transition(all 0.18s ease 0.06s);
         }
+
         &:nth-child(2) {
-            @include transition(all 0.25s ease 0.15s);
+            @include transition(all 0.18s ease 0.09s);
         }
+
         &:nth-child(1) {
-            @include transition(all 0.25s ease 0.2s);
+            @include transition(all 0.18s ease 0.12s);
         }
+
         &:last-child {
             margin-bottom: 0;
         }
+
         a {
             font-size: 48px;
             font-weight: 700;
             color: $white_color;
             font-family: $font_2;
-            transition: all 0.3s;
+            transition: all 0.2s;
+
             @media #{$small_mobile} {
                 font-size: 30px;
             }
+
             &:hover,
             &.active {
                 color: $primary_color;
@@ -75,6 +86,7 @@
     width: 100%;
     left: 0;
     bottom: 0;
+
     @media #{$large_mobile,$small_mobile} {
         display: none;
     }
@@ -84,26 +96,32 @@
     .menu-switch {
         top: 0;
         @include opacity(1);
-        @include transition(all 0.25s ease 0.05s);
+        @include transition(all 0.18s ease 0.03s);
     }
+
     .main-menu {
         li {
             top: 0;
             @include opacity(1);
+
             &:nth-child(1) {
-                @include transition(all 0.25s ease 0s);
+                @include transition(all 0.18s ease 0s);
             }
+
             &:nth-child(2) {
-                @include transition(all 0.25s ease 0.05s);
+                @include transition(all 0.18s ease 0.03s);
             }
+
             &:nth-child(3) {
-                @include transition(all 0.25s ease 0.1s);
+                @include transition(all 0.18s ease 0.06s);
             }
+
             &:nth-child(4) {
-                @include transition(all 0.25s ease 0.15s);
+                @include transition(all 0.18s ease 0.09s);
             }
+
             &:nth-child(5) {
-                @include transition(all 0.25s ease 0.2s);
+                @include transition(all 0.18s ease 0.12s);
             }
         }
     }
