@@ -638,6 +638,7 @@ ol {
 
 .page-top-section {
   padding: 0 40px;
+  overflow: hidden;
 }
 .page-top-warp {
   height: 500px;
@@ -645,7 +646,39 @@ ol {
   align-items: center;
   justify-content: center;
   background-attachment: fixed;
+  position: relative;
 }
+
+.page-top-warp .page-top-decoration {
+  position: absolute;
+  top: -26%;
+  right: -10%;
+  width: 72%;
+  height: 153%;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px),
+  (max-width: 576px) {
+  .page-top-warp .page-top-decoration {
+    top: 6%;
+    right: -28%;
+    width: 170%;
+    height: 119%;
+  }
+}
+
+.page-top-warp .page-top-decoration object.page-top-decoration-svg {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: right center;
+}
+
 .page-top-warp h2 {
   font-size: 80px;
   font-weight: 600;
