@@ -1632,3 +1632,242 @@ ol {
   font-size: 10px;
   font-weight: 700;
 }
+/*------------------
+   Book page
+ ------------------*/
+.book-section {
+  position: relative;
+  z-index: 1;
+  padding: 40px 24px 100px;
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+
+.book-intro {
+  text-align: center;
+  max-width: 520px;
+}
+.book-intro h2 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 36px;
+}
+.book-intro p {
+  color: #bfbfbf;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.book-stage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  perspective: 2200px;
+}
+
+.book {
+  --book-width: min(920px, 92vw);
+  --book-height: calc(var(--book-width) * 0.62);
+  --page-radius: 3px;
+  position: relative;
+  width: var(--book-width);
+  height: var(--book-height);
+  transform-style: preserve-3d;
+}
+.book::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.08) 52%, rgba(0, 0, 0, 0.28) 100%), #1a1a1a;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  border-radius: 4px 8px 8px 4px;
+}
+
+.book-pages {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.book-page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: default;
+}
+.book-page.is-flipped {
+  transform: rotateY(-180deg);
+}
+.book-page.is-flipping {
+  pointer-events: none;
+}
+
+.page-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 3px solid #fff;
+  padding: 4px;
+  background: #111;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.page-face--front {
+  border-radius: 0 var(--page-radius) var(--page-radius) 0;
+}
+
+.page-face--back {
+  transform: rotateY(180deg);
+  border-radius: var(--page-radius) 0 0 var(--page-radius);
+}
+
+.page-face--blank {
+  background: #111;
+}
+
+.page-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-face:not(.page-face--blank)::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.72) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.page-meta {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.page-number {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.page-title {
+  pointer-events: auto;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  width: fit-content;
+}
+.page-title[aria-disabled=true] {
+  pointer-events: none;
+  cursor: default;
+}
+.page-title:hover {
+  color: #242deb;
+}
+
+.page-tech,
+.page-credit {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.book-hit {
+  position: absolute;
+  bottom: 0;
+  width: 42%;
+  height: 18%;
+  z-index: 100;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.book-hit::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 10px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  opacity: 0;
+  transition: opacity 0.25s ease, background-color 0.25s ease;
+}
+.book-hit:hover:not(:disabled)::after, .book-hit:focus-visible:not(:disabled)::after {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.75);
+}
+.book-hit:disabled {
+  cursor: default;
+}
+.book-hit:focus-visible {
+  outline: none;
+}
+
+.book-hit--prev {
+  left: 4%;
+}
+
+.book-hit--next {
+  right: 4%;
+}
+
+.book.is-at-start .book-hit--prev::after,
+.book.is-at-end .book-hit--next::after {
+  opacity: 0;
+}
+
+@media (max-width: 767px) {
+  .book-section {
+    padding: 24px 16px 80px;
+    gap: 24px;
+  }
+  .book-intro h2 {
+    font-size: 28px;
+  }
+  .book-intro p {
+    font-size: 13px;
+  }
+  .book {
+    --book-height: calc(var(--book-width) * 0.72);
+  }
+  .page-title {
+    font-size: 14px;
+  }
+  .page-meta {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+  .book-hit {
+    height: 22%;
+  }
+}

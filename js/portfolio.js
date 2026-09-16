@@ -23,7 +23,7 @@ const data = {
             "image": "img/projects/36.jpg",
             "companyCredit": ""
         },
-        , {
+        {
             "title": "SynergyBricks",
             "tech": "Wordpress",
             "link": "https://synergybricks.com/",
@@ -305,9 +305,9 @@ const data = {
 
 
 const container = document.getElementById('projects-container');
-// console.log(data.projects.length);
-data.projects.forEach(project => {
-    const html = `
+if (container) {
+    data.projects.forEach(project => {
+        const html = `
       <div class="col-lg-4 col-xl-3 col-sm-6">
         <a class="gallery-item" href="${project?.link}" target="_blank">
           <img src="${project?.image}" alt="${project?.title}">
@@ -319,5 +319,6 @@ data.projects.forEach(project => {
         </a>
       </div>
     `;
-    container.insertAdjacentHTML('beforeend', html);
-});
+        container.insertAdjacentHTML('beforeend', html);
+    });
+}
