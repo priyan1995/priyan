@@ -2,12 +2,20 @@
 const data = {
     "projects": [
         {
+            "title": "KeyTwo",
+            "tech": "Wordpress",
+            "link": "https://keytwo.almoftah.om/en",
+            "image": "img/projects/41.jpg",
+            "companyCredit": ""
+        },
+        {
             "title": "Sherbet",
             "tech": "NextJs, Gsap",
             "link": "https://www.sherbetrewards.com/",
             "image": "img/projects/37.jpg",
             "companyCredit": "By Ideahub"
         },
+
         {
             "title": "Codax",
             "tech": "HTML,CSS,JS",
