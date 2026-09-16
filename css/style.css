@@ -1667,7 +1667,7 @@ ol {
 
 .book-view-all {
   width: auto;
-  min-width: 46px;
+  min-width: 150px;
   padding: 0 22px !important;
   line-height: 46px;
   padding-top: 0 !important;
@@ -1675,6 +1675,7 @@ ol {
   text-align: center;
   border: 1px solid #ffffff1c;
   color: #ffffffa6;
+  font-size: 14px;
 }
 .book-view-all:hover {
   color: #fff;
