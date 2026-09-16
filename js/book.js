@@ -59,6 +59,9 @@
 	});
 
 	const pageNodes = Array.from(pagesEl.querySelectorAll('.book-page'));
+	const OPEN_DELAY_MS = 2000;
+	const OPEN_MS = 700;
+	let hasOpened = false;
 
 	function restack() {
 		pageNodes.forEach((node, index) => {
@@ -76,7 +79,7 @@
 	}
 
 	function flipNext() {
-		if (isAnimating || current >= pageNodes.length) return false;
+		if (!hasOpened || isAnimating || current >= pageNodes.length) return false;
 		isAnimating = true;
 		const page = pageNodes[current];
 		page.classList.add('is-flipping', 'is-flipped');
@@ -93,7 +96,7 @@
 	}
 
 	function flipPrev() {
-		if (isAnimating || current <= 0) return false;
+		if (!hasOpened || isAnimating || current <= 0) return false;
 		isAnimating = true;
 		current -= 1;
 		const page = pageNodes[current];
@@ -111,7 +114,7 @@
 	}
 
 	function autoStep() {
-		if (isHovered || isAnimating) return;
+		if (!hasOpened || isHovered || isAnimating) return;
 
 		if (autoDirection === 1) {
 			if (current >= pageNodes.length) {
@@ -133,7 +136,7 @@
 
 	function startAutoFold() {
 		stopAutoFold();
-		if (isHovered) return;
+		if (!hasOpened || isHovered) return;
 		autoTimer = window.setInterval(autoStep, AUTO_MS);
 	}
 
@@ -144,6 +147,16 @@
 		}
 	}
 
+	function openBook() {
+		if (hasOpened) return;
+		bookEl.classList.remove('is-closed');
+		bookEl.classList.add('is-open');
+		hasOpened = true;
+		window.setTimeout(() => {
+			startAutoFold();
+		}, OPEN_MS);
+	}
+
 	pagesEl.addEventListener('click', (event) => {
 		const title = event.target.closest('.page-title');
 		if (title) {
@@ -151,6 +164,11 @@
 			if (title.getAttribute('aria-disabled') === 'true') {
 				event.preventDefault();
 			}
+			return;
+		}
+
+		if (!hasOpened) {
+			openBook();
 			return;
 		}
 
@@ -177,6 +195,7 @@
 		startAutoFold();
 	});
 
+	bookEl.classList.add('is-closed');
 	updateState();
-	startAutoFold();
+	window.setTimeout(openBook, OPEN_DELAY_MS);
 })();

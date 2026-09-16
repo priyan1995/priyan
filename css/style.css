@@ -1696,6 +1696,8 @@ ol {
   width: var(--book-width);
   height: var(--book-height);
   transform-style: preserve-3d;
+  margin: 0 auto;
+  transition: width 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .book::before {
   content: "";
@@ -1704,6 +1706,28 @@ ol {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.08) 52%, rgba(0, 0, 0, 0.28) 100%), #1a1a1a;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   border-radius: 4px 8px 8px 4px;
+  transition: background 0.7s ease, border-radius 0.7s ease, box-shadow 0.7s ease;
+}
+.book.is-closed {
+  width: calc(var(--book-width) / 2);
+}
+.book.is-closed::before {
+  background: #1a1a1a;
+  border-radius: 6px 10px 10px 6px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), 8px 0 18px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.book.is-closed .book-page {
+  width: 100%;
+}
+.book.is-closed .book-page:not(:first-child) {
+  visibility: hidden;
+  pointer-events: none;
+}
+.book.is-closed .page-face--front {
+  border-radius: var(--page-radius);
+}
+.book.is-closed .page-face--back {
+  visibility: hidden;
 }
 
 .book-pages {
@@ -1720,7 +1744,7 @@ ol {
   height: 100%;
   transform-origin: left center;
   transform-style: preserve-3d;
-  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: default;
 }
 .book-page.is-flipped {
@@ -1857,4 +1881,35 @@ ol {
     right: 12px;
     bottom: 36px;
   }
+}
+
+/* Portfolio page light theme */
+.portfolio-page .header-section,
+.portfolio-page .book-section,
+.portfolio-page .footer-section {
+  background: #fff;
+  color: #222222;
+}
+.portfolio-page .header-section .menu-switch i {
+  color: #222222;
+}
+.portfolio-page .book-intro h2,
+.portfolio-page .book-intro p {
+  color: #222222;
+}
+.portfolio-page .book-view-all {
+  border-color: rgba(34, 34, 34, 0.2);
+  color: #222222;
+}
+.portfolio-page .book-view-all:hover {
+  color: #fff;
+}
+.portfolio-page .footer-section .footer-social a {
+  color: #222222;
+  border-bottom-color: rgba(34, 34, 34, 0.2);
+}
+.portfolio-page .footer-section .copyright,
+.portfolio-page .footer-section .copyright a,
+.portfolio-page .footer-section .copyright p {
+  color: #222222;
 }
