@@ -9,14 +9,20 @@
 	let isAnimating = false;
 	const FLIP_MS = 900;
 	const AUTO_MS = 4000;
+	const OPEN_DELAY_MS = 2000;
+	const SHIFT_MS = 600;
 	let autoTimer = null;
 	let isHovered = false;
 	let autoDirection = 1;
+	let hasOpened = false;
 
-	for (let i = 0; i < projects.length; i += 2) {
+	const coverProject = projects[0] || null;
+	const remainingProjects = projects.slice(1);
+
+	for (let i = 0; i < remainingProjects.length; i += 2) {
 		sheets.push({
-			front: projects[i],
-			back: projects[i + 1] || null,
+			front: remainingProjects[i],
+			back: remainingProjects[i + 1] || null,
 		});
 	}
 
@@ -45,13 +51,28 @@
 		`;
 	}
 
+	const totalSheets = sheets.length + 1;
+
+	const coverPage = document.createElement('div');
+	coverPage.className = 'book-page book-page--cover';
+	coverPage.dataset.index = '0';
+	coverPage.style.zIndex = String(totalSheets);
+	coverPage.innerHTML = `
+		<div class="page-face page-face--front page-face--cover">
+			<div id="particles-js"></div>
+			<h2 class="book-cover-title">Portfolio</h2>
+		</div>
+		${faceHTML(coverProject, 'back', 1)}
+	`;
+	pagesEl.appendChild(coverPage);
+
 	sheets.forEach((sheet, index) => {
-		const frontNum = index * 2 + 1;
-		const backNum = index * 2 + 2;
+		const frontNum = index * 2 + 2;
+		const backNum = index * 2 + 3;
 		const page = document.createElement('div');
 		page.className = 'book-page';
-		page.dataset.index = String(index);
-		page.style.zIndex = String(sheets.length - index);
+		page.dataset.index = String(index + 1);
+		page.style.zIndex = String(totalSheets - (index + 1));
 		page.innerHTML =
 			faceHTML(sheet.front, 'front', frontNum) +
 			faceHTML(sheet.back, 'back', backNum);
@@ -59,16 +80,13 @@
 	});
 
 	const pageNodes = Array.from(pagesEl.querySelectorAll('.book-page'));
-	const OPEN_DELAY_MS = 2000;
-	const OPEN_MS = 700;
-	let hasOpened = false;
 
 	function restack() {
 		pageNodes.forEach((node, index) => {
 			if (node.classList.contains('is-flipped')) {
 				node.style.zIndex = String(index + 1);
 			} else {
-				node.style.zIndex = String(sheets.length - index);
+				node.style.zIndex = String(totalSheets - index);
 			}
 		});
 	}
@@ -76,18 +94,26 @@
 	function updateState() {
 		bookEl.classList.toggle('is-at-start', current <= 0);
 		bookEl.classList.toggle('is-at-end', current >= pageNodes.length);
+		bookEl.classList.toggle('is-cover-open', current > 0);
 	}
 
 	function flipNext() {
 		if (!hasOpened || isAnimating || current >= pageNodes.length) return false;
 		isAnimating = true;
 		const page = pageNodes[current];
+		const isCoverFlip = page.classList.contains('book-page--cover');
+		if (isCoverFlip) {
+			bookEl.classList.add('is-opening');
+		}
 		page.classList.add('is-flipping', 'is-flipped');
-		page.style.zIndex = String(sheets.length + current + 1);
+		page.style.zIndex = String(totalSheets + current + 1);
 		current += 1;
 		updateState();
 		window.setTimeout(() => {
 			page.classList.remove('is-flipping');
+			if (isCoverFlip) {
+				bookEl.classList.remove('is-opening');
+			}
 			restack();
 			isAnimating = false;
 			updateState();
@@ -100,12 +126,19 @@
 		isAnimating = true;
 		current -= 1;
 		const page = pageNodes[current];
+		const isCoverFlip = page.classList.contains('book-page--cover');
+		if (isCoverFlip) {
+			bookEl.classList.add('is-opening');
+		}
 		page.classList.add('is-flipping');
 		page.classList.remove('is-flipped');
-		page.style.zIndex = String(sheets.length + current + 1);
+		page.style.zIndex = String(totalSheets + current + 1);
 		updateState();
 		window.setTimeout(() => {
 			page.classList.remove('is-flipping');
+			if (isCoverFlip) {
+				bookEl.classList.remove('is-opening');
+			}
 			restack();
 			isAnimating = false;
 			updateState();
@@ -149,12 +182,21 @@
 
 	function openBook() {
 		if (hasOpened) return;
-		bookEl.classList.remove('is-closed');
-		bookEl.classList.add('is-open');
 		hasOpened = true;
+
+		// Slide the complete closed book to the spine position (no empty left page)
+		bookEl.classList.add('is-shifting');
+
 		window.setTimeout(() => {
-			startAutoFold();
-		}, OPEN_MS);
+			// Expand and fold the cover together — 1st project lands on the left
+			bookEl.classList.remove('is-closed', 'is-shifting');
+			bookEl.classList.add('is-open');
+			flipNext();
+
+			window.setTimeout(() => {
+				startAutoFold();
+			}, FLIP_MS);
+		}, SHIFT_MS);
 	}
 
 	pagesEl.addEventListener('click', (event) => {

@@ -3,9 +3,23 @@
 // Initialize particles.js with very transparent settings
 document.addEventListener('DOMContentLoaded', function() {
 	if (typeof particlesJS !== 'undefined') {
-		// Ensure particles container doesn't affect layout
 		var particlesContainer = document.getElementById('particles-js');
-		if (particlesContainer) {
+		if (!particlesContainer) return;
+
+		var isBookCover = !!particlesContainer.closest('.page-face--cover');
+
+		if (isBookCover) {
+			particlesContainer.style.position = 'absolute';
+			particlesContainer.style.top = '0';
+			particlesContainer.style.left = '0';
+			particlesContainer.style.width = '100%';
+			particlesContainer.style.height = '100%';
+			particlesContainer.style.zIndex = '0';
+			particlesContainer.style.margin = '0';
+			particlesContainer.style.padding = '0';
+			particlesContainer.style.overflow = 'hidden';
+			particlesContainer.style.pointerEvents = 'none';
+		} else {
 			particlesContainer.style.position = 'fixed';
 			particlesContainer.style.top = '0';
 			particlesContainer.style.left = '0';
@@ -14,15 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
 			particlesContainer.style.zIndex = '0';
 			particlesContainer.style.margin = '0';
 			particlesContainer.style.padding = '0';
+			particlesContainer.style.pointerEvents = 'none';
 		}
-		
+
 		particlesJS('particles-js', {
 			particles: {
 				number: {
-					value: 50,
+					value: isBookCover ? 35 : 50,
 					density: {
 						enable: true,
-						value_area: 800
+						value_area: isBookCover ? 500 : 800
 					}
 				},
 				color: {
@@ -36,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					}
 				},
 				opacity: {
-					value: 0.1,
+					value: isBookCover ? 0.35 : 0.1,
 					random: true,
 					anim: {
 						enable: true,
@@ -57,9 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				},
 				line_linked: {
 					enable: true,
-					distance: 150,
+					distance: 120,
 					color: '#ffffff',
-					opacity: 0.08,
+					opacity: isBookCover ? 0.25 : 0.08,
 					width: 1
 				},
 				move: {
@@ -68,8 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
 					direction: 'none',
 					random: true,
 					straight: false,
-					out_mode: 'out',
-					bounce: false,
+					out_mode: 'bounce',
+					bounce: true,
 					attract: {
 						enable: false,
 						rotateX: 600,
@@ -81,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				detect_on: 'canvas',
 				events: {
 					onhover: {
-						enable: true,
+						enable: false,
 						mode: 'grab'
 					},
 					onclick: {
@@ -117,11 +132,22 @@ document.addEventListener('DOMContentLoaded', function() {
 			},
 			retina_detect: true
 		});
-		
-		// Ensure canvas is properly positioned after initialization
+
 		setTimeout(function() {
-			var canvas = particlesContainer ? particlesContainer.querySelector('canvas') : null;
-			if (canvas) {
+			var canvas = particlesContainer.querySelector('canvas');
+			if (!canvas) return;
+
+			if (isBookCover) {
+				canvas.style.position = 'absolute';
+				canvas.style.top = '0';
+				canvas.style.left = '0';
+				canvas.style.width = '100%';
+				canvas.style.height = '100%';
+				canvas.style.zIndex = '0';
+				canvas.style.pointerEvents = 'none';
+				canvas.style.maxWidth = '100%';
+				canvas.style.maxHeight = '100%';
+			} else {
 				canvas.style.position = 'fixed';
 				canvas.style.top = '0';
 				canvas.style.left = '0';
@@ -130,11 +156,5 @@ document.addEventListener('DOMContentLoaded', function() {
 				canvas.setAttribute('style', canvas.getAttribute('style') + ' pointer-events: none !important;');
 			}
 		}, 100);
-		
-		// Also ensure container doesn't block clicks
-		if (particlesContainer) {
-			particlesContainer.style.pointerEvents = 'none';
-		}
 	}
 });
-
