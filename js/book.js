@@ -111,5 +111,14 @@
 	if (nextBtn) nextBtn.addEventListener('click', flipNext);
 	if (prevBtn) prevBtn.addEventListener('click', flipPrev);
 
+	pagesEl.addEventListener('click', (event) => {
+		const title = event.target.closest('.page-title');
+		if (!title) return;
+		event.stopPropagation();
+		if (title.getAttribute('aria-disabled') === 'true') {
+			event.preventDefault();
+		}
+	});
+
 	updateHits();
 })();
