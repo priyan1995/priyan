@@ -8,6 +8,10 @@
 	let current = 0;
 	let isAnimating = false;
 	const FLIP_MS = 900;
+	const AUTO_MS = 4000;
+	let autoTimer = null;
+	let isHovered = false;
+	let autoDirection = 1;
 
 	for (let i = 0; i < projects.length; i += 2) {
 		sheets.push({
@@ -55,12 +59,6 @@
 	});
 
 	const pageNodes = Array.from(pagesEl.querySelectorAll('.book-page'));
-	const prevBtn = bookEl.querySelector('.book-hit--prev');
-	const nextBtn = bookEl.querySelector('.book-hit--next');
-	const AUTO_MS = 4000;
-	let autoTimer = null;
-	let isHovered = false;
-	let autoDirection = 1;
 
 	function restack() {
 		pageNodes.forEach((node, index) => {
@@ -72,9 +70,7 @@
 		});
 	}
 
-	function updateHits() {
-		if (prevBtn) prevBtn.disabled = current <= 0 || isAnimating;
-		if (nextBtn) nextBtn.disabled = current >= pageNodes.length || isAnimating;
+	function updateState() {
 		bookEl.classList.toggle('is-at-start', current <= 0);
 		bookEl.classList.toggle('is-at-end', current >= pageNodes.length);
 	}
@@ -86,12 +82,12 @@
 		page.classList.add('is-flipping', 'is-flipped');
 		page.style.zIndex = String(sheets.length + current + 1);
 		current += 1;
-		updateHits();
+		updateState();
 		window.setTimeout(() => {
 			page.classList.remove('is-flipping');
 			restack();
 			isAnimating = false;
-			updateHits();
+			updateState();
 		}, FLIP_MS);
 		return true;
 	}
@@ -104,12 +100,12 @@
 		page.classList.add('is-flipping');
 		page.classList.remove('is-flipped');
 		page.style.zIndex = String(sheets.length + current + 1);
-		updateHits();
+		updateState();
 		window.setTimeout(() => {
 			page.classList.remove('is-flipping');
 			restack();
 			isAnimating = false;
-			updateHits();
+			updateState();
 		}, FLIP_MS);
 		return true;
 	}
@@ -148,15 +144,26 @@
 		}
 	}
 
-	if (nextBtn) nextBtn.addEventListener('click', flipNext);
-	if (prevBtn) prevBtn.addEventListener('click', flipPrev);
-
 	pagesEl.addEventListener('click', (event) => {
 		const title = event.target.closest('.page-title');
-		if (!title) return;
-		event.stopPropagation();
-		if (title.getAttribute('aria-disabled') === 'true') {
-			event.preventDefault();
+		if (title) {
+			event.stopPropagation();
+			if (title.getAttribute('aria-disabled') === 'true') {
+				event.preventDefault();
+			}
+			return;
+		}
+
+		const face = event.target.closest('.page-face');
+		if (!face || face.classList.contains('page-face--blank')) return;
+
+		if (face.classList.contains('page-face--front')) {
+			flipNext();
+			return;
+		}
+
+		if (face.classList.contains('page-face--back')) {
+			flipPrev();
 		}
 	});
 
@@ -170,6 +177,6 @@
 		startAutoFold();
 	});
 
-	updateHits();
+	updateState();
 	startAutoFold();
 })();

@@ -532,7 +532,8 @@ ol {
   }
 }
 .hero-slider .owl-nav button.owl-prev,
-.hero-slider .owl-nav button.owl-next {
+.hero-slider .owl-nav button.owl-next,
+.book-view-all {
   display: inline-block;
   width: 46px;
   height: 46px;
@@ -547,7 +548,8 @@ ol {
   transition: all 0.4s;
 }
 .hero-slider .owl-nav button.owl-prev:hover,
-.hero-slider .owl-nav button.owl-next:hover {
+.hero-slider .owl-nav button.owl-next:hover,
+.book-view-all:hover {
   background: #fcc257;
   border-color: #fcc257;
 }
@@ -1658,9 +1660,24 @@ ol {
 }
 .book-intro p {
   color: #bfbfbf;
-  margin: 0;
+  margin: 0 0 20px;
   font-size: 15px;
   line-height: 1.6;
+}
+
+.book-view-all {
+  width: auto;
+  min-width: 46px;
+  padding: 0 22px !important;
+  line-height: 46px;
+  padding-top: 0 !important;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid #ffffff1c;
+  color: #ffffffa6;
+}
+.book-view-all:hover {
+  color: #fff;
 }
 
 .book-stage {
@@ -1722,6 +1739,7 @@ ol {
   background: #c5c5c57a;
   overflow: hidden;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .page-face--front {
@@ -1735,6 +1753,7 @@ ol {
 
 .page-face--blank {
   background: #111;
+  cursor: default;
 }
 
 .page-image {
@@ -1815,53 +1834,6 @@ ol {
   letter-spacing: 0.04em;
 }
 
-.book-hit {
-  position: absolute;
-  bottom: 0;
-  width: 42%;
-  height: 28px;
-  z-index: 100;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: pointer;
-}
-.book-hit::after {
-  content: "";
-  position: absolute;
-  left: 12%;
-  right: 12%;
-  bottom: 10px;
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.22);
-  opacity: 0;
-  transition: opacity 0.25s ease, background-color 0.25s ease;
-}
-.book-hit:hover:not(:disabled)::after, .book-hit:focus-visible:not(:disabled)::after {
-  opacity: 1;
-  background: rgba(255, 255, 255, 0.75);
-}
-.book-hit:disabled {
-  cursor: default;
-}
-.book-hit:focus-visible {
-  outline: none;
-}
-
-.book-hit--prev {
-  left: 4%;
-}
-
-.book-hit--next {
-  right: 4%;
-}
-
-.book.is-at-start .book-hit--prev::after,
-.book.is-at-end .book-hit--next::after {
-  opacity: 0;
-}
-
 @media (max-width: 767px) {
   .book-section {
     padding: 0 0 20px 0;
@@ -1883,8 +1855,5 @@ ol {
     left: 12px;
     right: 12px;
     bottom: 36px;
-  }
-  .book-hit {
-    height: 28px;
   }
 }

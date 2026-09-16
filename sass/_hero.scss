@@ -45,6 +45,28 @@
     }
 }
 
+.book-view-all {
+	display: inline-block;
+	width: auto;
+	min-width: 46px;
+	height: 46px;
+	line-height: 46px;
+	padding: 0 22px;
+	border: 1px solid #ffffff1c;
+	color: #ffffffa6;
+	font-size: 20px;
+	border-radius: 1px;
+	text-decoration: none;
+	text-align: center;
+	@include transition(all 0.4s);
+
+	&:hover {
+		background: $primary_color;
+		border-color: $primary_color;
+		color: $white_color;
+	}
+}
+
 .hero-item {
     position: relative;
     display: flex;

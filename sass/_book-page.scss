@@ -26,7 +26,7 @@
 
 	p {
 		color: $p_color;
-		margin: 0;
+		margin: 0 0 20px;
 		font-size: 15px;
 		line-height: 1.6;
 	}
@@ -98,6 +98,7 @@
 	background: #c5c5c57a;
 	overflow: hidden;
 	box-sizing: border-box;
+	cursor: pointer;
 }
 
 .page-face--front {
@@ -111,6 +112,7 @@
 
 .page-face--blank {
 	background: #111;
+	cursor: default;
 }
 
 .page-image {
@@ -193,58 +195,6 @@
 	letter-spacing: 0.04em;
 }
 
-.book-hit {
-	position: absolute;
-	bottom: 0;
-	width: 42%;
-	height: 28px;
-	z-index: 100;
-	border: 0;
-	padding: 0;
-	background: transparent;
-	cursor: pointer;
-
-	&::after {
-		content: "";
-		position: absolute;
-		left: 12%;
-		right: 12%;
-		bottom: 10px;
-		height: 3px;
-		border-radius: 999px;
-		background: rgba(255, 255, 255, 0.22);
-		opacity: 0;
-		transition: opacity 0.25s ease, background-color 0.25s ease;
-	}
-
-	&:hover:not(:disabled)::after,
-	&:focus-visible:not(:disabled)::after {
-		opacity: 1;
-		background: rgba(255, 255, 255, 0.75);
-	}
-
-	&:disabled {
-		cursor: default;
-	}
-
-	&:focus-visible {
-		outline: none;
-	}
-}
-
-.book-hit--prev {
-	left: 4%;
-}
-
-.book-hit--next {
-	right: 4%;
-}
-
-.book.is-at-start .book-hit--prev::after,
-.book.is-at-end .book-hit--next::after {
-	opacity: 0;
-}
-
 @media (max-width: 767px) {
 	.book-section {
 		padding: 0 0 20px 0;
@@ -273,9 +223,5 @@
 		left: 12px;
 		right: 12px;
 		bottom: 36px;
-	}
-
-	.book-hit {
-		height: 28px;
 	}
 }
