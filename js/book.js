@@ -39,7 +39,7 @@
 
 		return `
 			<div class="page-face page-face--${side}">
-				<img class="page-image" src="${project.image}" alt="${project.title}">
+				<img class="page-image" src="${project.image}" alt="${project.title}" draggable="false">
 				<div class="page-meta">
 					<span class="page-number">${pageNumber}</span>
 					<a class="page-title" ${linkAttrs}>${project.title}</a>

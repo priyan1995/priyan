@@ -316,6 +316,9 @@
 	object-fit: contain;
 	object-position: center;
 	background: $white_color;
+	-webkit-user-drag: none;
+	user-select: none;
+	-webkit-user-select: none;
 }
 
 .page-face:not(.page-face--blank):not(.page-face--cover)::after {
