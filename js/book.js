@@ -9,7 +9,7 @@
 	let isAnimating = false;
 	const FLIP_MS = 900;
 	const AUTO_MS = 4000;
-	const SHIFT_MS = 600;
+	const OPEN_DELAY_MS = 4000;
 	let autoTimer = null;
 	let isHovered = false;
 	let autoDirection = 1;
@@ -78,6 +78,7 @@
 	});
 
 	const pageNodes = Array.from(pagesEl.querySelectorAll('.book-page'));
+	const bookStage = bookEl.closest('.book-stage');
 
 	function restack() {
 		pageNodes.forEach((node, index) => {
@@ -93,6 +94,10 @@
 		bookEl.classList.toggle('is-at-start', current <= 0);
 		bookEl.classList.toggle('is-at-end', current >= pageNodes.length);
 		bookEl.classList.toggle('is-cover-open', current > 0);
+		if (bookStage) {
+			// Decoration only when not on the cover
+			bookStage.classList.toggle('is-decoration-visible', current > 0);
+		}
 	}
 
 	function flipNext() {
@@ -182,19 +187,14 @@
 		if (hasOpened) return;
 		hasOpened = true;
 
-		// Slide the complete closed book to the spine position (no empty left page)
-		bookEl.classList.add('is-shifting');
+		// Stay on the right — expand left and fold the cover
+		bookEl.classList.remove('is-closed');
+		bookEl.classList.add('is-open');
+		flipNext();
 
 		window.setTimeout(() => {
-			// Expand and fold the cover together — 1st project lands on the left
-			bookEl.classList.remove('is-closed', 'is-shifting');
-			bookEl.classList.add('is-open');
-			flipNext();
-
-			window.setTimeout(() => {
-				startAutoFold();
-			}, FLIP_MS);
-		}, SHIFT_MS);
+			startAutoFold();
+		}, FLIP_MS);
 	}
 
 	pagesEl.addEventListener('click', (event) => {
@@ -237,4 +237,5 @@
 
 	bookEl.classList.add('is-closed');
 	updateState();
+	window.setTimeout(openBook, OPEN_DELAY_MS);
 })();

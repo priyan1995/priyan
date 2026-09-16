@@ -1640,7 +1640,7 @@ ol {
 .book-section {
   position: relative;
   z-index: 1;
-  padding: 0 0 20px 0;
+  padding: 0 0 100px 0;
   min-height: calc(100vh - 160px);
   display: flex;
   flex-direction: column;
@@ -1713,9 +1713,12 @@ ol {
 }
 
 .book-stage {
-  width: 100%;
+  --book-width: min(920px, 92vw);
+  width: var(--book-width);
+  max-width: 92vw;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   perspective: 2200px;
   position: relative;
 }
@@ -1730,6 +1733,8 @@ ol {
   align-items: center;
   justify-content: flex-end;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
 @media only screen and (min-width: 576px) and (max-width: 767px),
   (max-width: 576px) {
@@ -1739,6 +1744,9 @@ ol {
     width: 170%;
     height: 119%;
   }
+}
+.book-stage.is-decoration-visible .page-top-decoration {
+  opacity: 1;
 }
 .book-stage .page-top-decoration object.page-top-decoration-svg {
   width: 100%;
@@ -1761,7 +1769,7 @@ ol {
   width: var(--book-width);
   height: var(--book-height);
   transform-style: preserve-3d;
-  margin: 0 auto;
+  margin: 0;
   transition: width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .book::before {
@@ -1776,7 +1784,7 @@ ol {
 .book.is-closed {
   width: var(--page-width);
   overflow: hidden;
-  transition: width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .book.is-closed::before {
   background: #fff;
@@ -1794,9 +1802,6 @@ ol {
 .book.is-closed .page-face--cover {
   border-radius: var(--page-radius);
   border: 3px solid #eeeeee;
-}
-.book.is-closed.is-shifting {
-  transform: translateX(50%);
 }
 .book.is-open,
 .book.is-opening {
@@ -1986,7 +1991,7 @@ ol {
 
 @media (max-width: 767px) {
   .book-section {
-    padding: 0 0 20px 0;
+    padding: 0 0 100px 0;
     gap: 24px;
   }
   .book-intro h2 {
