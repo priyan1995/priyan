@@ -1638,7 +1638,7 @@ ol {
 .book-section {
   position: relative;
   z-index: 1;
-  padding: 40px 24px 100px;
+  padding: 0 0 20px 0;
   min-height: calc(100vh - 160px);
   display: flex;
   flex-direction: column;
@@ -1719,7 +1719,7 @@ ol {
   -webkit-backface-visibility: hidden;
   border: 3px solid #fff;
   padding: 4px;
-  background: #111;
+  background: #c5c5c57a;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -1753,6 +1753,8 @@ ol {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.72) 100%);
   z-index: 1;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
 .page-meta {
@@ -1765,6 +1767,13 @@ ol {
   flex-direction: column;
   gap: 4px;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.page-face:hover:not(.page-face--blank)::after,
+.page-face:hover .page-meta {
+  opacity: 1;
 }
 
 .page-number {
@@ -1775,7 +1784,7 @@ ol {
 }
 
 .page-title {
-  pointer-events: auto;
+  pointer-events: none;
   position: relative;
   z-index: 120;
   color: #fff;
@@ -1792,6 +1801,10 @@ ol {
 }
 .page-title:hover {
   color: #242deb;
+}
+
+.page-face:hover .page-title:not([aria-disabled=true]) {
+  pointer-events: auto;
 }
 
 .page-tech,
@@ -1851,7 +1864,7 @@ ol {
 
 @media (max-width: 767px) {
   .book-section {
-    padding: 24px 16px 80px;
+    padding: 0 0 20px 0;
     gap: 24px;
   }
   .book-intro h2 {

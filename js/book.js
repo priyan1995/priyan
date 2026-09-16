@@ -57,6 +57,10 @@
 	const pageNodes = Array.from(pagesEl.querySelectorAll('.book-page'));
 	const prevBtn = bookEl.querySelector('.book-hit--prev');
 	const nextBtn = bookEl.querySelector('.book-hit--next');
+	const AUTO_MS = 4000;
+	let autoTimer = null;
+	let isHovered = false;
+	let autoDirection = 1;
 
 	function restack() {
 		pageNodes.forEach((node, index) => {
@@ -76,7 +80,7 @@
 	}
 
 	function flipNext() {
-		if (isAnimating || current >= pageNodes.length) return;
+		if (isAnimating || current >= pageNodes.length) return false;
 		isAnimating = true;
 		const page = pageNodes[current];
 		page.classList.add('is-flipping', 'is-flipped');
@@ -89,10 +93,11 @@
 			isAnimating = false;
 			updateHits();
 		}, FLIP_MS);
+		return true;
 	}
 
 	function flipPrev() {
-		if (isAnimating || current <= 0) return;
+		if (isAnimating || current <= 0) return false;
 		isAnimating = true;
 		current -= 1;
 		const page = pageNodes[current];
@@ -106,6 +111,41 @@
 			isAnimating = false;
 			updateHits();
 		}, FLIP_MS);
+		return true;
+	}
+
+	function autoStep() {
+		if (isHovered || isAnimating) return;
+
+		if (autoDirection === 1) {
+			if (current >= pageNodes.length) {
+				autoDirection = -1;
+				flipPrev();
+			} else {
+				flipNext();
+			}
+			return;
+		}
+
+		if (current <= 0) {
+			autoDirection = 1;
+			flipNext();
+		} else {
+			flipPrev();
+		}
+	}
+
+	function startAutoFold() {
+		stopAutoFold();
+		if (isHovered) return;
+		autoTimer = window.setInterval(autoStep, AUTO_MS);
+	}
+
+	function stopAutoFold() {
+		if (autoTimer) {
+			window.clearInterval(autoTimer);
+			autoTimer = null;
+		}
 	}
 
 	if (nextBtn) nextBtn.addEventListener('click', flipNext);
@@ -120,5 +160,16 @@
 		}
 	});
 
+	bookEl.addEventListener('mouseenter', () => {
+		isHovered = true;
+		stopAutoFold();
+	});
+
+	bookEl.addEventListener('mouseleave', () => {
+		isHovered = false;
+		startAutoFold();
+	});
+
 	updateHits();
+	startAutoFold();
 })();
