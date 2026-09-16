@@ -9,7 +9,6 @@
 	let isAnimating = false;
 	const FLIP_MS = 900;
 	const AUTO_MS = 4000;
-	const OPEN_DELAY_MS = 2000;
 	const SHIFT_MS = 600;
 	let autoTimer = null;
 	let isHovered = false;
@@ -59,7 +58,6 @@
 	coverPage.style.zIndex = String(totalSheets);
 	coverPage.innerHTML = `
 		<div class="page-face page-face--front page-face--cover">
-			<div id="particles-js"></div>
 			<h2 class="book-cover-title">Portfolio</h2>
 		</div>
 		${faceHTML(coverProject, 'back', 1)}
@@ -239,5 +237,4 @@
 
 	bookEl.classList.add('is-closed');
 	updateState();
-	window.setTimeout(openBook, OPEN_DELAY_MS);
 })();
