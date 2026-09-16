@@ -79,8 +79,8 @@
 	.page-top-decoration {
 		position: absolute;
 		top: -41%;
-		right: -2%;
-		width: 72%;
+		right: -17%;
+		width: 88%;
 		height: 153%;
 		pointer-events: none;
 		display: flex;
@@ -133,8 +133,7 @@
 		position: absolute;
 		inset: 0;
 		background:
-			linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.08) 52%, rgba(0, 0, 0, 0.28) 100%),
-			#1a1a1a;
+			linear-gradient(90deg, #fff 0%, #fff 49.5%, #eeeeee 50%, #fff 50.5%, #fff 100%);
 		box-shadow:
 			0 30px 60px rgba(0, 0, 0, 0.55),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.08);
@@ -192,6 +191,24 @@
 	&.is-open.is-at-start::before {
 		clip-path: inset(0 0 0 50%);
 	}
+
+	&.is-at-end::before {
+		background:
+			linear-gradient(90deg, #fff 0%, #fff 49.5%, #eeeeee 50%, #fff 50.5%, #fff 100%);
+	}
+
+	&.is-at-end::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		box-shadow:
+			inset 3px 0 0 0 #eeeeee,
+			inset -3px 0 0 0 #eeeeee,
+			inset 0 3px 0 0 #eeeeee,
+			inset 0 -3px 0 0 #eeeeee;
+		z-index: 0;
+	}
 }
 
 .book-pages {
@@ -208,6 +225,7 @@
 	height: 100%;
 	transform-origin: left center;
 	transform-style: preserve-3d;
+	background: transparent;
 	transition:
 		transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1),
 		width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -227,9 +245,9 @@
 	inset: 0;
 	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
-	border: 3px solid $white_color;
+	border: 3px solid #eeeeee;
 	padding: 4px;
-	background: #c5c5c57a;
+	background: #fff;
 	overflow: hidden;
 	box-sizing: border-box;
 	cursor: pointer;
@@ -249,7 +267,8 @@
 }
 
 .page-face--blank {
-	background: #111;
+	background: $white_color;
+	border: 3px solid #eeeeee;
 	cursor: default;
 }
 
@@ -264,6 +283,7 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	border: 3px solid #eeeeee;
 
 	&::after {
 		display: none;
@@ -283,7 +303,8 @@
 	text-align: center;
 }
 
-.book.is-closed .page-face--cover {
+.book.is-closed .page-face--cover,
+.book.is-open.is-at-start .book-page--cover:not(.is-flipped) .page-face--cover {
 	border-radius: var(--page-radius);
 	border: 3px solid #eeeeee;
 }

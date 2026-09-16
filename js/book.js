@@ -50,7 +50,7 @@
 		`;
 	}
 
-	const totalSheets = sheets.length + 1;
+	const totalSheets = sheets.length + 2; // cover + content sheets + end blank
 
 	const coverPage = document.createElement('div');
 	coverPage.className = 'book-page book-page--cover';
@@ -77,8 +77,20 @@
 		pagesEl.appendChild(page);
 	});
 
+	// Final blank sheet so the last spread always has two bordered pages
+	const endPage = document.createElement('div');
+	endPage.className = 'book-page book-page--end';
+	endPage.dataset.index = String(sheets.length + 1);
+	endPage.style.zIndex = '1';
+	endPage.innerHTML = `
+		<div class="page-face page-face--front page-face--blank"></div>
+		<div class="page-face page-face--back page-face--blank"></div>
+	`;
+	pagesEl.appendChild(endPage);
+
 	const pageNodes = Array.from(pagesEl.querySelectorAll('.book-page'));
 	const bookStage = bookEl.closest('.book-stage');
+	const lastFlippableIndex = pageNodes.length - 1; // end blank stays on the right
 
 	function restack() {
 		pageNodes.forEach((node, index) => {
@@ -92,16 +104,15 @@
 
 	function updateState() {
 		bookEl.classList.toggle('is-at-start', current <= 0);
-		bookEl.classList.toggle('is-at-end', current >= pageNodes.length);
+		bookEl.classList.toggle('is-at-end', current >= lastFlippableIndex);
 		bookEl.classList.toggle('is-cover-open', current > 0);
 		if (bookStage) {
-			// Decoration only when not on the cover
 			bookStage.classList.toggle('is-decoration-visible', current > 0);
 		}
 	}
 
 	function flipNext() {
-		if (!hasOpened || isAnimating || current >= pageNodes.length) return false;
+		if (!hasOpened || isAnimating || current >= lastFlippableIndex) return false;
 		isAnimating = true;
 		const page = pageNodes[current];
 		const isCoverFlip = page.classList.contains('book-page--cover');
@@ -153,7 +164,7 @@
 		if (!hasOpened || isHovered || isAnimating) return;
 
 		if (autoDirection === 1) {
-			if (current >= pageNodes.length) {
+			if (current >= lastFlippableIndex) {
 				autoDirection = -1;
 				flipPrev();
 			} else {
@@ -213,7 +224,15 @@
 		}
 
 		const face = event.target.closest('.page-face');
-		if (!face || face.classList.contains('page-face--blank')) return;
+		if (!face) return;
+
+		// Blank right page stays put; blank left page can fold back
+		if (face.classList.contains('page-face--blank')) {
+			if (face.classList.contains('page-face--back')) {
+				flipPrev();
+			}
+			return;
+		}
 
 		if (face.classList.contains('page-face--front')) {
 			flipNext();
