@@ -161,15 +161,18 @@
 		current += 1;
 		updateState();
 		window.setTimeout(() => {
+			restack();
+			setRightLive(pageNodes[current]);
 			page.classList.remove('is-flipping');
 			if (isCoverFlip) {
 				bookEl.classList.remove('is-opening');
 			}
-			restack();
-			setRightLive(pageNodes[current]);
-			isAnimating = false;
-			bookEl.classList.remove('is-animating');
-			updateState();
+			// Let Safari commit the new stack before unlocking overlays (reduces blink)
+			window.requestAnimationFrame(() => {
+				isAnimating = false;
+				bookEl.classList.remove('is-animating');
+				updateState();
+			});
 		}, FLIP_MS);
 		return true;
 	}
@@ -191,15 +194,17 @@
 		page.style.zIndex = String(totalSheets + current + 1);
 		updateState();
 		window.setTimeout(() => {
+			restack();
+			setRightLive(pageNodes[current]);
 			page.classList.remove('is-flipping');
 			if (isCoverFlip) {
 				bookEl.classList.remove('is-opening');
 			}
-			restack();
-			setRightLive(pageNodes[current]);
-			isAnimating = false;
-			bookEl.classList.remove('is-animating');
-			updateState();
+			window.requestAnimationFrame(() => {
+				isAnimating = false;
+				bookEl.classList.remove('is-animating');
+				updateState();
+			});
 		}, FLIP_MS);
 		return true;
 	}

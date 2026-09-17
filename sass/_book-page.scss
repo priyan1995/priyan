@@ -130,6 +130,20 @@
 	margin: 0;
 	transition: width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
 
+	// Freeze decorative layers while any page folds (Safari blink)
+	&.is-animating {
+		.book-stack,
+		.book-cover-stack {
+			transition: none;
+		}
+
+		.page-meta,
+		.page-face:not(.page-face--blank):not(.page-face--cover)::after {
+			opacity: 0 !important;
+			transition: none;
+		}
+	}
+
 	&::before {
 		content: "";
 		position: absolute;
@@ -532,6 +546,9 @@
 	inset: 0;
 	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
+	// Flatten children into the face — Safari otherwise paints text/images through the reverse side
+	transform-style: flat;
+	-webkit-transform-style: flat;
 	border: 3px solid #eeeeee;
 	padding: 4px;
 	background: #fff;
@@ -544,6 +561,8 @@
 
 .page-face--front {
 	border-radius: 0 var(--page-radius) var(--page-radius) 0;
+	transform: rotateY(0deg);
+	-webkit-transform: rotateY(0deg);
 }
 
 .page-face--back {
@@ -562,6 +581,24 @@
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	background-color: $white_color;
+	transform-style: flat;
+	-webkit-transform-style: flat;
+}
+
+// Safari: hard-hide cover front after fold (title has no img texture to dump)
+.book-page--cover.is-flipped:not(.is-flipping) {
+	.page-face--cover,
+	.book-cover-title {
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+// Safari: hide flipped fronts after fold (is-right-live re-shows before unflip)
+.book-page.is-flipped:not(.is-flipping):not(.book-page--cover) .page-face--front {
+	visibility: hidden;
+	pointer-events: none;
 }
 
 .book-page--cover.is-flipping {
@@ -613,6 +650,7 @@
 	text-transform: uppercase;
 	pointer-events: none;
 	text-align: center;
+	// No translateZ — Safari promotes the title into its own layer and paints it through the page
 }
 
 .book.is-closed .page-face--cover,
@@ -731,31 +769,19 @@
 	.book {
 		--book-height: calc(var(--book-width) * 0.72);
 
-		// Reduce compositor thrash / blink on mobile flips
-		&.is-animating {
-			.book-stack,
-			.book-cover-stack {
-				transition: none;
-			}
-
-			.page-meta,
-			.page-face:not(.page-face--blank):not(.page-face--cover)::after {
-				opacity: 0 !important;
-				transition: none;
-			}
-		}
-
 		.book-page {
-			// Do NOT use visibility:hidden on faces — Safari dumps img GPU textures
-			// and the right page flashes white until they re-upload after the fold.
-
 			// Keep the live right sheet's bitmap in the compositor during/after flips
 			&.is-right-live {
-				.page-face--front {
+				.page-face--front,
+				.page-face--cover,
+				.book-cover-title {
 					opacity: 1 !important;
 					visibility: visible !important;
-					transform: translate3d(0, 0, 1px);
-					-webkit-transform: translate3d(0, 0, 1px);
+				}
+
+				.page-face--front {
+					transform: translate3d(0, 0, 1px) rotateY(0deg);
+					-webkit-transform: translate3d(0, 0, 1px) rotateY(0deg);
 				}
 
 				.page-image {
@@ -769,22 +795,10 @@
 			}
 		}
 
-		// Soft-hide unused backs without unloading textures (opacity keeps decode alive)
+		// Soft-hide unused backs without unloading textures
 		.book-page:not(.is-flipped):not(.is-flipping):not(.is-right-live) .page-face--back {
 			opacity: 0;
 			pointer-events: none;
-		}
-
-		.book-page.is-flipped:not(.is-flipping) .page-face--front {
-			opacity: 0;
-			pointer-events: none;
-		}
-
-		.book-cover-title {
-			transform: translateZ(0);
-			-webkit-transform: translateZ(0);
-			backface-visibility: hidden;
-			-webkit-backface-visibility: hidden;
 		}
 	}
 

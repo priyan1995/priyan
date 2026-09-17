@@ -1774,6 +1774,15 @@ ol {
   margin: 0;
   transition: width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+.book.is-animating .book-stack,
+.book.is-animating .book-cover-stack {
+  transition: none;
+}
+.book.is-animating .page-meta,
+.book.is-animating .page-face:not(.page-face--blank):not(.page-face--cover)::after {
+  opacity: 0 !important;
+  transition: none;
+}
 .book::before {
   content: "";
   position: absolute;
@@ -2036,6 +2045,8 @@ ol {
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform-style: flat;
+  -webkit-transform-style: flat;
   border: 3px solid #eeeeee;
   padding: 4px;
   background: #fff;
@@ -2048,6 +2059,8 @@ ol {
 
 .page-face--front {
   border-radius: 0 var(--page-radius) var(--page-radius) 0;
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
 }
 
 .page-face--back {
@@ -2065,6 +2078,20 @@ ol {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background-color: #fff;
+  transform-style: flat;
+  -webkit-transform-style: flat;
+}
+
+.book-page--cover.is-flipped:not(.is-flipping) .page-face--cover,
+.book-page--cover.is-flipped:not(.is-flipping) .book-cover-title {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.book-page.is-flipped:not(.is-flipping):not(.book-page--cover) .page-face--front {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .book-page--cover.is-flipping::after {
@@ -2219,20 +2246,15 @@ ol {
   .book {
     --book-height: calc(var(--book-width) * 0.72);
   }
-  .book.is-animating .book-stack,
-  .book.is-animating .book-cover-stack {
-    transition: none;
-  }
-  .book.is-animating .page-meta,
-  .book.is-animating .page-face:not(.page-face--blank):not(.page-face--cover)::after {
-    opacity: 0 !important;
-    transition: none;
-  }
-  .book .book-page.is-right-live .page-face--front {
+  .book .book-page.is-right-live .page-face--front,
+  .book .book-page.is-right-live .page-face--cover,
+  .book .book-page.is-right-live .book-cover-title {
     opacity: 1 !important;
     visibility: visible !important;
-    transform: translate3d(0, 0, 1px);
-    -webkit-transform: translate3d(0, 0, 1px);
+  }
+  .book .book-page.is-right-live .page-face--front {
+    transform: translate3d(0, 0, 1px) rotateY(0deg);
+    -webkit-transform: translate3d(0, 0, 1px) rotateY(0deg);
   }
   .book .book-page.is-right-live .page-image {
     opacity: 1 !important;
@@ -2245,16 +2267,6 @@ ol {
   .book .book-page:not(.is-flipped):not(.is-flipping):not(.is-right-live) .page-face--back {
     opacity: 0;
     pointer-events: none;
-  }
-  .book .book-page.is-flipped:not(.is-flipping) .page-face--front {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .book .book-cover-title {
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
   }
   .page-title {
     font-size: 14px;
