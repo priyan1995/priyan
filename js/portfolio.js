@@ -100,7 +100,27 @@ const data = {
             "image": "img/projects/40.png",
             "companyCredit": "By Ideahub"
         },
-
+        {
+            "title": "Hyperjet",
+            "tech": "Wordpress",
+            "link": "https://hyperjet.lk/",
+            "image": "img/projects/24.jpg",
+            "companyCredit": "By Web lankan"
+        },
+        {
+            "title": "Ko-Da-Fi",
+            "tech": "HTML",
+            "link": "http://kodafi.com/dev/",
+            "image": "img/projects/6.jpg",
+            "companyCredit": ""
+        },
+        {
+            "title": "Practise Task",
+            "tech": "HTML/CSS/JS",
+            "link": "https://priyan1995.github.io/js-parallax/",
+            "image": "img/projects/25.jpg",
+            "companyCredit": ""
+        },
 
         {
             "title": "Kuwait Farmers Market",
@@ -167,13 +187,7 @@ const data = {
             "image": "img/projects/20.jpg",
             "companyCredit": ""
         },
-        {
-            "title": "Practise Task",
-            "tech": "HTML/CSS/JS",
-            "link": "https://priyan1995.github.io/js-parallax/",
-            "image": "img/projects/25.jpg",
-            "companyCredit": ""
-        },
+
         {
             "title": "AIMUN",
             "tech": "Wordpress",
@@ -223,13 +237,7 @@ const data = {
             "image": "img/projects/5.jpg",
             "companyCredit": ""
         },
-        {
-            "title": "Ko-Da-Fi",
-            "tech": "HTML",
-            "link": "http://kodafi.com/dev/",
-            "image": "img/projects/6.jpg",
-            "companyCredit": ""
-        },
+
         {
             "title": "Lanka Newsweek",
             "tech": "PHP",
@@ -244,13 +252,7 @@ const data = {
             "image": "img/projects/8.jpg",
             "companyCredit": "By Web lankan"
         },
-        {
-            "title": "Hyperjet",
-            "tech": "Wordpress",
-            "link": "https://hyperjet.lk/",
-            "image": "img/projects/24.jpg",
-            "companyCredit": "By Web lankan"
-        },
+
         {
             "title": "Camlo Lanka Website",
             "tech": "Wordpress",
