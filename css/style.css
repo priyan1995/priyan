@@ -1720,6 +1720,7 @@ ol {
   display: flex;
   justify-content: flex-end;
   perspective: 2200px;
+  -webkit-perspective: 2200px;
   position: relative;
   overflow: visible;
 }
@@ -1905,6 +1906,7 @@ ol {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   z-index: 2;
 }
 
@@ -2011,13 +2013,16 @@ ol {
   height: 100%;
   transform-origin: left center;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   background: transparent;
   overflow: visible;
   transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: default;
+  -webkit-font-smoothing: antialiased;
 }
 .book-page.is-flipped {
   transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
 }
 .book-page.is-flipping {
   pointer-events: none;
@@ -2037,6 +2042,8 @@ ol {
   overflow: hidden;
   box-sizing: border-box;
   cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .page-face--front {
@@ -2045,6 +2052,7 @@ ol {
 
 .page-face--back {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   border-radius: var(--page-radius) 0 0 var(--page-radius);
 }
 
@@ -2123,6 +2131,7 @@ ol {
   -webkit-user-drag: none;
   user-select: none;
   -webkit-user-select: none;
+  pointer-events: none;
 }
 
 .page-face:not(.page-face--blank):not(.page-face--cover)::after {
@@ -2150,9 +2159,14 @@ ol {
   transition: opacity 0.35s ease;
 }
 
-.page-face:hover:not(.page-face--blank)::after,
-.page-face:hover .page-meta {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .page-face:hover:not(.page-face--blank)::after,
+  .page-face:hover .page-meta {
+    opacity: 1;
+  }
+  .page-face:hover .page-title:not([aria-disabled=true]) {
+    pointer-events: auto;
+  }
 }
 
 .page-number {
@@ -2182,10 +2196,6 @@ ol {
   color: #242deb;
 }
 
-.page-face:hover .page-title:not([aria-disabled=true]) {
-  pointer-events: auto;
-}
-
 .page-tech,
 .page-credit {
   color: rgba(255, 255, 255, 0.78);
@@ -2208,6 +2218,51 @@ ol {
   }
   .book {
     --book-height: calc(var(--book-width) * 0.72);
+  }
+  .book.is-animating .book-stack,
+  .book.is-animating .book-cover-stack {
+    transition: none;
+  }
+  .book.is-animating .page-meta,
+  .book.is-animating .page-face:not(.page-face--blank):not(.page-face--cover)::after {
+    opacity: 0 !important;
+    transition: none;
+  }
+  .book .book-page {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .book .book-page.is-flipping {
+    z-index: 999 !important;
+  }
+  .book .book-page.is-flipped:not(.is-flipping) .page-face--front {
+    visibility: hidden;
+  }
+  .book .book-page:not(.is-flipped):not(.is-flipping) .page-face--back {
+    visibility: hidden;
+  }
+  .book .page-face {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -webkit-transform-style: preserve-3d;
+  }
+  .book .page-face--back {
+    transform: rotateY(180deg) translateZ(0.1px);
+    -webkit-transform: rotateY(180deg) translateZ(0.1px);
+  }
+  .book .page-image {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+  }
+  .book .book-cover-title {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
   }
   .page-title {
     font-size: 14px;

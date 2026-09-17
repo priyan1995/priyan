@@ -114,6 +114,7 @@
 	function flipNext() {
 		if (!hasOpened || isAnimating || current >= lastFlippableIndex) return false;
 		isAnimating = true;
+		bookEl.classList.add('is-animating');
 		const page = pageNodes[current];
 		const isCoverFlip = page.classList.contains('book-page--cover');
 		if (isCoverFlip) {
@@ -130,6 +131,7 @@
 			}
 			restack();
 			isAnimating = false;
+			bookEl.classList.remove('is-animating');
 			updateState();
 		}, FLIP_MS);
 		return true;
@@ -138,6 +140,7 @@
 	function flipPrev() {
 		if (!hasOpened || isAnimating || current <= 0) return false;
 		isAnimating = true;
+		bookEl.classList.add('is-animating');
 		current -= 1;
 		const page = pageNodes[current];
 		const isCoverFlip = page.classList.contains('book-page--cover');
@@ -155,6 +158,7 @@
 			}
 			restack();
 			isAnimating = false;
+			bookEl.classList.remove('is-animating');
 			updateState();
 		}, FLIP_MS);
 		return true;

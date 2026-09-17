@@ -74,6 +74,7 @@
 	display: flex;
 	justify-content: flex-end;
 	perspective: 2200px;
+	-webkit-perspective: 2200px;
 	position: relative;
 	overflow: visible;
 
@@ -326,6 +327,7 @@
 	position: absolute;
 	inset: 0;
 	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
 	z-index: 2;
 }
 
@@ -499,15 +501,20 @@
 	height: 100%;
 	transform-origin: left center;
 	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
 	background: transparent;
 	overflow: visible;
+	// Keep width in sync with cover expand — without it pages snap to 50% of the
+	// still-half book and the stage (flex-end) makes the book look like it shrinks right
 	transition:
 		transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1),
 		width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
 	cursor: default;
+	-webkit-font-smoothing: antialiased;
 
 	&.is-flipped {
 		transform: rotateY(-180deg);
+		-webkit-transform: rotateY(-180deg);
 	}
 
 	&.is-flipping {
@@ -531,6 +538,8 @@
 	overflow: hidden;
 	box-sizing: border-box;
 	cursor: pointer;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .page-face--front {
@@ -539,6 +548,7 @@
 
 .page-face--back {
 	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
 	border-radius: var(--page-radius) 0 0 var(--page-radius);
 }
 
@@ -624,6 +634,7 @@
 	-webkit-user-drag: none;
 	user-select: none;
 	-webkit-user-select: none;
+	pointer-events: none;
 }
 
 .page-face:not(.page-face--blank):not(.page-face--cover)::after {
@@ -651,9 +662,16 @@
 	transition: opacity 0.35s ease;
 }
 
-.page-face:hover:not(.page-face--blank)::after,
-.page-face:hover .page-meta {
-	opacity: 1;
+// Avoid sticky :hover on touch devices (causes blink / wrong-side overlays on mobile)
+@media (hover: hover) and (pointer: fine) {
+	.page-face:hover:not(.page-face--blank)::after,
+	.page-face:hover .page-meta {
+		opacity: 1;
+	}
+
+	.page-face:hover .page-title:not([aria-disabled="true"]) {
+		pointer-events: auto;
+	}
 }
 
 .page-number {
@@ -685,10 +703,6 @@
 	}
 }
 
-.page-face:hover .page-title:not([aria-disabled="true"]) {
-	pointer-events: auto;
-}
-
 .page-tech,
 .page-credit {
 	color: rgba(255, 255, 255, 0.78);
@@ -716,6 +730,65 @@
 
 	.book {
 		--book-height: calc(var(--book-width) * 0.72);
+
+		// Reduce compositor thrash / blink on mobile flips
+		&.is-animating {
+			.book-stack,
+			.book-cover-stack {
+				transition: none;
+			}
+
+			.page-meta,
+			.page-face:not(.page-face--blank):not(.page-face--cover)::after {
+				opacity: 0 !important;
+				transition: none;
+			}
+		}
+
+		.book-page {
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+
+			&.is-flipping {
+				z-index: 999 !important;
+			}
+
+			// Hide non-visible faces (Safari see-through) — desktop-only would blink
+			&.is-flipped:not(.is-flipping) .page-face--front {
+				visibility: hidden;
+			}
+
+			&:not(.is-flipped):not(.is-flipping) .page-face--back {
+				visibility: hidden;
+			}
+		}
+
+		.page-face {
+			transform: translateZ(0);
+			-webkit-transform: translateZ(0);
+			-webkit-transform-style: preserve-3d;
+		}
+
+		.page-face--back {
+			transform: rotateY(180deg) translateZ(0.1px);
+			-webkit-transform: rotateY(180deg) translateZ(0.1px);
+		}
+
+		.page-image {
+			transform: translateZ(0);
+			-webkit-transform: translateZ(0);
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			-webkit-transform-style: preserve-3d;
+		}
+
+		.book-cover-title {
+			transform: translateZ(0);
+			-webkit-transform: translateZ(0);
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			-webkit-transform-style: preserve-3d;
+		}
 	}
 
 	.page-title {
