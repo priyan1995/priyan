@@ -145,13 +145,22 @@
 				rgba(0, 0, 0, 0.06) 100%
 			),
 			linear-gradient(90deg, #fff 0%, #fff 49.5%, #eeeeee 50%, #fff 50.5%, #fff 100%);
+		// Soft by default — full open shadow only after cover has finished folding
 		box-shadow:
-			0 24px 48px rgba(0, 0, 0, 0.28),
-			0 8px 18px rgba(0, 0, 0, 0.12),
+			0 2px 4px rgba(0, 0, 0, 0.06),
+			0 8px 18px rgba(0, 0, 0, 0.1),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 		border-radius: 4px 8px 8px 4px;
-		transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0.9s ease, clip-path 0s linear;
+		transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0.7s ease, clip-path 0s linear;
 		z-index: 0;
+	}
+
+	// Full under-shadow only when cover is fully open (avoids left-side sweep on load)
+	&.is-cover-open:not(.is-opening)::before {
+		box-shadow:
+			0 24px 48px rgba(0, 0, 0, 0.22),
+			0 8px 18px rgba(0, 0, 0, 0.1),
+			inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 	}
 
 	.book-stack {
@@ -160,7 +169,7 @@
 		pointer-events: none;
 		z-index: 0;
 		opacity: 0;
-		transition: opacity 0.55s ease;
+		transition: opacity 0.7s ease;
 	}
 
 	// Open-book stack only after cover has fully folded
@@ -179,28 +188,38 @@
 		pointer-events: none;
 		z-index: 0;
 		opacity: 0;
-		transition: opacity 0.55s ease;
+		transition: opacity 0.45s ease;
 	}
 
 	// Cover page stack: initial closed + after folding back to cover
 	&.is-closed .book-cover-stack,
 	&.is-open.is-at-start:not(.is-opening) .book-cover-stack {
 		opacity: 1;
+		visibility: visible;
 	}
 
-	// Keep stack on the cover (right) side when the open book is back on the cover
-	&.is-open.is-at-start .book-cover-stack {
+	// Keep cover-stack pinned to the cover (right) while book is open/opening
+	&.is-open .book-cover-stack,
+	&.is-opening .book-cover-stack {
 		left: 50%;
 		width: 50%;
 	}
 
-	&.is-opening .book-cover-stack {
-		opacity: 0;
-		transition: opacity 0.2s ease;
+	&.is-closed .book-cover-stack {
+		left: 0;
+		width: 100%;
 	}
 
-	&.is-cover-open .book-cover-stack {
+	// Hide instantly while cover folds — no expand/fade flash from the cover
+	&.is-opening .book-cover-stack {
 		opacity: 0;
+		transition: none;
+		visibility: hidden;
+	}
+
+	&.is-cover-open:not(.is-opening) .book-cover-stack {
+		opacity: 0;
+		visibility: hidden;
 	}
 
 	&.is-closed {
@@ -277,7 +296,11 @@
 	&.is-opening::before,
 	&.is-open.is-at-start::before {
 		clip-path: inset(0 0 0 50%);
-		transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0.9s ease, clip-path 0s linear;
+		box-shadow:
+			0 2px 4px rgba(0, 0, 0, 0.06),
+			0 8px 18px rgba(0, 0, 0, 0.1),
+			inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+		transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0s linear, clip-path 0s linear;
 	}
 
 	&.is-at-end::before {

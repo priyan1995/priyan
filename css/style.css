@@ -1778,10 +1778,13 @@ ol {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0) 8%, rgba(0, 0, 0, 0) 46%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0) 54%, rgba(0, 0, 0, 0) 92%, rgba(0, 0, 0, 0.06) 100%), linear-gradient(90deg, #fff 0%, #fff 49.5%, #eeeeee 50%, #fff 50.5%, #fff 100%);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28), 0 8px 18px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 8px 18px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   border-radius: 4px 8px 8px 4px;
-  transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0.9s ease, clip-path 0s linear;
+  transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0.7s ease, clip-path 0s linear;
   z-index: 0;
+}
+.book.is-cover-open:not(.is-opening)::before {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22), 0 8px 18px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 .book .book-stack {
   position: absolute;
@@ -1789,7 +1792,7 @@ ol {
   pointer-events: none;
   z-index: 0;
   opacity: 0;
-  transition: opacity 0.55s ease;
+  transition: opacity 0.7s ease;
 }
 .book.is-cover-open:not(.is-opening) .book-stack {
   opacity: 1;
@@ -1804,22 +1807,30 @@ ol {
   pointer-events: none;
   z-index: 0;
   opacity: 0;
-  transition: opacity 0.55s ease;
+  transition: opacity 0.45s ease;
 }
 .book.is-closed .book-cover-stack,
 .book.is-open.is-at-start:not(.is-opening) .book-cover-stack {
   opacity: 1;
+  visibility: visible;
 }
-.book.is-open.is-at-start .book-cover-stack {
+.book.is-open .book-cover-stack,
+.book.is-opening .book-cover-stack {
   left: 50%;
   width: 50%;
 }
+.book.is-closed .book-cover-stack {
+  left: 0;
+  width: 100%;
+}
 .book.is-opening .book-cover-stack {
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: none;
+  visibility: hidden;
 }
-.book.is-cover-open .book-cover-stack {
+.book.is-cover-open:not(.is-opening) .book-cover-stack {
   opacity: 0;
+  visibility: hidden;
 }
 .book.is-closed {
   width: var(--page-width);
@@ -1875,7 +1886,8 @@ ol {
 .book.is-opening::before,
 .book.is-open.is-at-start::before {
   clip-path: inset(0 0 0 50%);
-  transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0.9s ease, clip-path 0s linear;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 8px 18px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0s linear, clip-path 0s linear;
 }
 .book.is-at-end::before {
   background: linear-gradient(90deg, #fff 0%, #fff 49.5%, #eeeeee 50%, #fff 50.5%, #fff 100%);
