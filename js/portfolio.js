@@ -31,27 +31,6 @@ const data = {
             "companyCredit": ""
         },
         {
-            "title": "Hatton National Bank",
-            "tech": "Fintech - ReactJs",
-            "link": "",
-            "image": "img/projects/33.jpg",
-            "companyCredit": "By Ideahub"
-        },
-        {
-            "title": "DFCC Bank",
-            "tech": "Fintech - ReactJs",
-            "link": "",
-            "image": "img/projects/34.jpg",
-            "companyCredit": "By Ideahub"
-        },
-        {
-            "title": "Pan Asia Bank",
-            "tech": "Fintech - ReactJs",
-            "link": "",
-            "image": "img/projects/40.png",
-            "companyCredit": "By Ideahub"
-        },
-        {
             "title": "CV Winner",
             "tech": "ReactJs",
             "link": "https://priyan1995.github.io/cv-builder/",
@@ -73,32 +52,11 @@ const data = {
             "companyCredit": ""
         },
         {
-            "title": "Graceland Tea Factory",
-            "tech": "WordPress",
-            "link": "https://gracelandteafactory.com/",
-            "image": "img/projects/17.jpg",
-            "companyCredit": "By BflyDigital"
-        },
-        {
-            "title": "Kuwait Farmers Market",
-            "tech": "WordPress",
-            "link": "https://kuwaitfarmersmarket.com/",
-            "image": "img/projects/kfm.jpg",
-            "companyCredit": ""
-        },
-        {
             "title": "Roo Leo",
             "tech": "WordPress",
             "link": "http://rooleo.com/",
             "image": "img/projects/28.jpg",
             "companyCredit": ""
-        },
-        {
-            "title": "I love Coco",
-            "tech": "WordPress",
-            "link": "https://ilovecoco.co/",
-            "image": "img/projects/18.jpg",
-            "companyCredit": "By Lizard Advertising"
         },
         {
             "title": "Epsicon Traffic Management",
@@ -107,6 +65,59 @@ const data = {
             "image": "img/projects/1.jpg",
             "companyCredit": ""
         },
+        {
+            "title": "Graceland Tea Factory",
+            "tech": "WordPress",
+            "link": "https://gracelandteafactory.com/",
+            "image": "img/projects/17.jpg",
+            "companyCredit": "By BflyDigital"
+        },
+        {
+            "title": "ESES SECRETARIES",
+            "tech": "HTML/Css",
+            "link": "http://piyawardenaassociates.com/esessecretaries.lk",
+            "image": "img/projects/15.jpg",
+            "companyCredit": "By bflydigital"
+        },
+        {
+            "title": "Hatton National Bank",
+            "tech": "Fintech - ReactJs",
+            "link": "",
+            "image": "img/projects/33.jpg",
+            "companyCredit": "By Ideahub"
+        },
+        {
+            "title": "DFCC Bank",
+            "tech": "Fintech - ReactJs",
+            "link": "",
+            "image": "img/projects/34.jpg",
+            "companyCredit": "By Ideahub"
+        },
+        {
+            "title": "Pan Asia Bank",
+            "tech": "Fintech - ReactJs",
+            "link": "",
+            "image": "img/projects/40.png",
+            "companyCredit": "By Ideahub"
+        },
+
+
+        {
+            "title": "Kuwait Farmers Market",
+            "tech": "WordPress",
+            "link": "https://kuwaitfarmersmarket.com/",
+            "image": "img/projects/kfm.jpg",
+            "companyCredit": ""
+        },
+
+        {
+            "title": "I love Coco",
+            "tech": "WordPress",
+            "link": "https://ilovecoco.co/",
+            "image": "img/projects/18.jpg",
+            "companyCredit": "By Lizard Advertising"
+        },
+
         {
             "title": "Guardian Acuity",
             "tech": "UI / Front-End",
@@ -282,13 +293,7 @@ const data = {
             "image": "img/projects/12.jpg",
             "companyCredit": "By Web lankan"
         },
-        {
-            "title": "ESES SECRETARIES",
-            "tech": "HTML/Css",
-            "link": "http://piyawardenaassociates.com/esessecretaries.lk",
-            "image": "img/projects/15.jpg",
-            "companyCredit": "By bflydigital"
-        },
+
         {
             "title": "ISF Website",
             "tech": "HTML/Css",
