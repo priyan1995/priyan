@@ -2228,10 +2228,6 @@ ol {
     opacity: 0 !important;
     transition: none;
   }
-  .book .book-page {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
   .book .book-page.is-flipping {
     z-index: 999 !important;
   }
@@ -2240,6 +2236,9 @@ ol {
   }
   .book .book-page:not(.is-flipped):not(.is-flipping) .page-face--back {
     visibility: hidden;
+  }
+  .book .book-page.is-flipped:not(.is-flipping) {
+    pointer-events: auto;
   }
   .book .page-face {
     transform: translateZ(0);
@@ -2253,8 +2252,6 @@ ol {
   .book .page-image {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;
   }
   .book .book-cover-title {

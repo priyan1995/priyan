@@ -39,7 +39,7 @@
 
 		return `
 			<div class="page-face page-face--${side}">
-				<img class="page-image" src="${project.image}" alt="${project.title}" draggable="false">
+				<img class="page-image" src="${project.image}" alt="${project.title}" draggable="false" loading="eager" decoding="async">
 				<div class="page-meta">
 					<span class="page-number">${pageNumber}</span>
 					<a class="page-title" ${linkAttrs}>${project.title}</a>
@@ -49,6 +49,14 @@
 			</div>
 		`;
 	}
+
+	// Warm image cache so mobile Safari doesn't flash white when a buried page is revealed
+	projects.forEach((project) => {
+		if (!project.image) return;
+		const preload = new Image();
+		preload.decoding = 'async';
+		preload.src = project.image;
+	});
 
 	const totalSheets = sheets.length + 2; // cover + content sheets + end blank
 
@@ -165,7 +173,8 @@
 	}
 
 	function autoStep() {
-		if (!hasOpened || isHovered || isAnimating) return;
+		// Touch devices synthesize sticky mouseenter without mouseleave — never gate on hover there
+		if (!hasOpened || isAnimating || (isHovered && !isTouchBookUi())) return;
 
 		if (autoDirection === 1) {
 			if (current >= lastFlippableIndex) {
@@ -187,7 +196,8 @@
 
 	function startAutoFold() {
 		stopAutoFold();
-		if (!hasOpened || isHovered) return;
+		if (!hasOpened) return;
+		if (isHovered && !isTouchBookUi()) return;
 		autoTimer = window.setInterval(autoStep, AUTO_MS);
 	}
 
@@ -213,6 +223,10 @@
 		}, FLIP_MS);
 	}
 
+	function isTouchBookUi() {
+		return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+	}
+
 	pagesEl.addEventListener('click', (event) => {
 		const title = event.target.closest('.page-title');
 		if (title) {
@@ -225,6 +239,20 @@
 
 		if (!hasOpened) {
 			openBook();
+			return;
+		}
+
+		// Mobile Safari often hit-tests the untransformed page box (right half only),
+		// so left-side taps miss the flipped face — use X position instead.
+		if (isTouchBookUi()) {
+			const rect = bookEl.getBoundingClientRect();
+			if (event.clientX < rect.left + rect.width / 2) {
+				flipPrev();
+			} else {
+				flipNext();
+			}
+			// Keep autofold alive after taps (touch hover would otherwise leave it stopped)
+			startAutoFold();
 			return;
 		}
 
@@ -249,12 +277,15 @@
 		}
 	});
 
+	// Desktop only — mobile sticky :hover / synthetic mouseenter permanently stops autofold
 	bookEl.addEventListener('mouseenter', () => {
+		if (isTouchBookUi()) return;
 		isHovered = true;
 		stopAutoFold();
 	});
 
 	bookEl.addEventListener('mouseleave', () => {
+		if (isTouchBookUi()) return;
 		isHovered = false;
 		startAutoFold();
 	});
