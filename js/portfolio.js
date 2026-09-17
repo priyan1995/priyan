@@ -123,21 +123,41 @@ const data = {
         },
 
         {
+            "title": "Camlo Lanka Website",
+            "tech": "Wordpress",
+            "link": "http://www.camlolanka.com/",
+            "image": "img/projects/11.jpg",
+            "companyCredit": "By Web lankan"
+        },
+        {
+            "title": "Coco Fresh Website",
+            "tech": "Wordpress",
+            "link": "http://www.cocofresh.lk/",
+            "image": "img/projects/10.jpg",
+            "companyCredit": "By Web lankan"
+        },
+        {
+            "title": "Tsara Website",
+            "tech": "Wordpress",
+            "link": "http://www.tsaragreentea.com/",
+            "image": "img/projects/13.jpg",
+            "companyCredit": "By Web lankan"
+        },
+
+        {
             "title": "Kuwait Farmers Market",
             "tech": "WordPress",
             "link": "https://kuwaitfarmersmarket.com/",
             "image": "img/projects/kfm.jpg",
             "companyCredit": ""
         },
-
         {
-            "title": "I love Coco",
+            "title": "Coco Fresh Revamp",
             "tech": "WordPress",
             "link": "https://ilovecoco.co/",
             "image": "img/projects/18.jpg",
             "companyCredit": "By Lizard Advertising"
         },
-
         {
             "title": "Guardian Acuity",
             "tech": "UI / Front-End",
@@ -254,20 +274,6 @@ const data = {
         },
 
         {
-            "title": "Camlo Lanka Website",
-            "tech": "Wordpress",
-            "link": "http://www.camlolanka.com/",
-            "image": "img/projects/11.jpg",
-            "companyCredit": "By Web lankan"
-        },
-        {
-            "title": "Tsara Website",
-            "tech": "Wordpress",
-            "link": "http://www.tsaragreentea.com/",
-            "image": "img/projects/13.jpg",
-            "companyCredit": "By Web lankan"
-        },
-        {
             "title": "NSBM - Responsive/few pages developed",
             "tech": "Wordpress",
             "link": "https://www.nsbm.ac.lk/",
@@ -281,13 +287,7 @@ const data = {
             "image": "img/projects/9.jpg",
             "companyCredit": "By Web lankan"
         },
-        {
-            "title": "Coco Fresh Website",
-            "tech": "Wordpress",
-            "link": "http://www.cocofresh.lk/",
-            "image": "img/projects/10.jpg",
-            "companyCredit": "By Web lankan"
-        },
+
         {
             "title": "Own E-Tutor",
             "tech": "HTML/Css",
