@@ -39,7 +39,7 @@
 
 		return `
 			<div class="page-face page-face--${side}">
-				<img class="page-image" src="${project.image}" alt="${project.title}" draggable="false" loading="eager" decoding="async">
+				<img class="page-image" src="${project.image}" alt="${project.title}" draggable="false" loading="eager" decoding="sync" fetchpriority="high">
 				<div class="page-meta">
 					<span class="page-number">${pageNumber}</span>
 					<a class="page-title" ${linkAttrs}>${project.title}</a>
@@ -100,6 +100,15 @@
 	const bookStage = bookEl.closest('.book-stage');
 	const lastFlippableIndex = pageNodes.length - 1; // end blank stays on the right
 
+	// Decode every sheet image up front so mobile reveal isn't a white paint
+	pageNodes.forEach((page) => {
+		page.querySelectorAll('.page-image').forEach((img) => {
+			if (img.decode) {
+				img.decode().catch(() => {});
+			}
+		});
+	});
+
 	function restack() {
 		pageNodes.forEach((node, index) => {
 			if (node.classList.contains('is-flipped')) {
@@ -108,6 +117,23 @@
 				node.style.zIndex = String(totalSheets - index);
 			}
 		});
+	}
+
+	function warmPageImages(page) {
+		if (!page) return;
+		page.querySelectorAll('.page-image').forEach((img) => {
+			if (img.decode) {
+				img.decode().catch(() => {});
+			}
+		});
+	}
+
+	// Keep the page that will sit on the right composited on mobile (avoids white flash)
+	function setRightLive(page) {
+		pageNodes.forEach((node) => node.classList.remove('is-right-live'));
+		if (!page) return;
+		page.classList.add('is-right-live');
+		warmPageImages(page);
 	}
 
 	function updateState() {
@@ -124,10 +150,12 @@
 		isAnimating = true;
 		bookEl.classList.add('is-animating');
 		const page = pageNodes[current];
+		const nextRight = pageNodes[current + 1];
 		const isCoverFlip = page.classList.contains('book-page--cover');
 		if (isCoverFlip) {
 			bookEl.classList.add('is-opening');
 		}
+		setRightLive(nextRight);
 		page.classList.add('is-flipping', 'is-flipped');
 		page.style.zIndex = String(totalSheets + current + 1);
 		current += 1;
@@ -138,6 +166,7 @@
 				bookEl.classList.remove('is-opening');
 			}
 			restack();
+			setRightLive(pageNodes[current]);
 			isAnimating = false;
 			bookEl.classList.remove('is-animating');
 			updateState();
@@ -155,6 +184,8 @@
 		if (isCoverFlip) {
 			bookEl.classList.add('is-opening');
 		}
+		// This sheet's front becomes the right page — warm it before it rotates in
+		setRightLive(page);
 		page.classList.add('is-flipping');
 		page.classList.remove('is-flipped');
 		page.style.zIndex = String(totalSheets + current + 1);
@@ -165,6 +196,7 @@
 				bookEl.classList.remove('is-opening');
 			}
 			restack();
+			setRightLive(pageNodes[current]);
 			isAnimating = false;
 			bookEl.classList.remove('is-animating');
 			updateState();

@@ -2228,38 +2228,33 @@ ol {
     opacity: 0 !important;
     transition: none;
   }
-  .book .book-page.is-flipping {
-    z-index: 999 !important;
+  .book .book-page.is-right-live .page-face--front {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate3d(0, 0, 1px);
+    -webkit-transform: translate3d(0, 0, 1px);
+  }
+  .book .book-page.is-right-live .page-image {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate3d(0, 0, 1px);
+    -webkit-transform: translate3d(0, 0, 1px);
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+  }
+  .book .book-page:not(.is-flipped):not(.is-flipping):not(.is-right-live) .page-face--back {
+    opacity: 0;
+    pointer-events: none;
   }
   .book .book-page.is-flipped:not(.is-flipping) .page-face--front {
-    visibility: hidden;
-  }
-  .book .book-page:not(.is-flipped):not(.is-flipping) .page-face--back {
-    visibility: hidden;
-  }
-  .book .book-page.is-flipped:not(.is-flipping) {
-    pointer-events: auto;
-  }
-  .book .page-face {
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    -webkit-transform-style: preserve-3d;
-  }
-  .book .page-face--back {
-    transform: rotateY(180deg) translateZ(0.1px);
-    -webkit-transform: rotateY(180deg) translateZ(0.1px);
-  }
-  .book .page-image {
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    -webkit-transform-style: preserve-3d;
+    opacity: 0;
+    pointer-events: none;
   }
   .book .book-cover-title {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    -webkit-transform-style: preserve-3d;
   }
   .page-title {
     font-size: 14px;

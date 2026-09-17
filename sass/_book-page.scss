@@ -746,40 +746,38 @@
 		}
 
 		.book-page {
-			&.is-flipping {
-				z-index: 999 !important;
-			}
+			// Do NOT use visibility:hidden on faces — Safari dumps img GPU textures
+			// and the right page flashes white until they re-upload after the fold.
 
-			// Hide non-visible faces (Safari see-through) — desktop-only would blink
-			&.is-flipped:not(.is-flipping) .page-face--front {
-				visibility: hidden;
-			}
+			// Keep the live right sheet's bitmap in the compositor during/after flips
+			&.is-right-live {
+				.page-face--front {
+					opacity: 1 !important;
+					visibility: visible !important;
+					transform: translate3d(0, 0, 1px);
+					-webkit-transform: translate3d(0, 0, 1px);
+				}
 
-			&:not(.is-flipped):not(.is-flipping) .page-face--back {
-				visibility: hidden;
-			}
-
-			// Keep flipped left pages hittable even if a tap lands on the face
-			&.is-flipped:not(.is-flipping) {
-				pointer-events: auto;
+				.page-image {
+					opacity: 1 !important;
+					visibility: visible !important;
+					transform: translate3d(0, 0, 1px);
+					-webkit-transform: translate3d(0, 0, 1px);
+					-webkit-backface-visibility: visible;
+					backface-visibility: visible;
+				}
 			}
 		}
 
-		.page-face {
-			transform: translateZ(0);
-			-webkit-transform: translateZ(0);
-			-webkit-transform-style: preserve-3d;
+		// Soft-hide unused backs without unloading textures (opacity keeps decode alive)
+		.book-page:not(.is-flipped):not(.is-flipping):not(.is-right-live) .page-face--back {
+			opacity: 0;
+			pointer-events: none;
 		}
 
-		.page-face--back {
-			transform: rotateY(180deg) translateZ(0.1px);
-			-webkit-transform: rotateY(180deg) translateZ(0.1px);
-		}
-
-		.page-image {
-			transform: translateZ(0);
-			-webkit-transform: translateZ(0);
-			-webkit-transform-style: preserve-3d;
+		.book-page.is-flipped:not(.is-flipping) .page-face--front {
+			opacity: 0;
+			pointer-events: none;
 		}
 
 		.book-cover-title {
@@ -787,7 +785,6 @@
 			-webkit-transform: translateZ(0);
 			backface-visibility: hidden;
 			-webkit-backface-visibility: hidden;
-			-webkit-transform-style: preserve-3d;
 		}
 	}
 
