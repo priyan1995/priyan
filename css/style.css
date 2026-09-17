@@ -1647,7 +1647,7 @@ ol {
   align-items: center;
   justify-content: center;
   gap: 36px;
-  overflow: hidden;
+  overflow: visible;
 }
 .book-section > #particles-js {
   position: absolute !important;
@@ -1721,6 +1721,7 @@ ol {
   justify-content: flex-end;
   perspective: 2200px;
   position: relative;
+  overflow: visible;
 }
 .book-stage .page-top-decoration {
   position: absolute;
@@ -1776,10 +1777,26 @@ ol {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, #fff 0%, #fff 49.5%, #eeeeee 50%, #fff 50.5%, #fff 100%);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0) 8%, rgba(0, 0, 0, 0) 46%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0) 54%, rgba(0, 0, 0, 0) 92%, rgba(0, 0, 0, 0.06) 100%), linear-gradient(90deg, #fff 0%, #fff 49.5%, #eeeeee 50%, #fff 50.5%, #fff 100%);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28), 0 8px 18px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   border-radius: 4px 8px 8px 4px;
-  transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0.9s ease, clip-path 0.9s ease;
+  transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0.9s ease, clip-path 0s linear;
+  z-index: 0;
+}
+.book .book-stack {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.book.is-cover-open:not(.is-opening) .book-stack {
+  opacity: 1;
+}
+.book.is-opening .book-stack {
+  opacity: 0;
+  transition: none;
 }
 .book.is-closed {
   width: var(--page-width);
@@ -1789,7 +1806,10 @@ ol {
 .book.is-closed::before {
   background: #fff;
   border-radius: 6px 10px 10px 6px;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), 8px 0 18px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28), 8px 0 18px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+.book.is-closed .book-stack {
+  opacity: 0;
 }
 .book.is-closed .book-pages {
   width: var(--book-width);
@@ -1817,9 +1837,21 @@ ol {
 .book.is-opening .book-page {
   width: 50%;
 }
+.book.is-opening .book-pages::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 1px);
+  width: 2px;
+  background: #ececec;
+  z-index: 3;
+  pointer-events: none;
+}
 .book.is-opening::before,
 .book.is-open.is-at-start::before {
   clip-path: inset(0 0 0 50%);
+  transition: background 0.9s ease, border-radius 0.9s ease, box-shadow 0.9s ease, clip-path 0s linear;
 }
 .book.is-at-end::before {
   background: linear-gradient(90deg, #fff 0%, #fff 49.5%, #eeeeee 50%, #fff 50.5%, #fff 100%);
@@ -1837,6 +1869,54 @@ ol {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
+  z-index: 2;
+}
+
+.book-stack-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  border-radius: 1px;
+  background: repeating-linear-gradient(to right, #fafafa 0, #fafafa 1px, #ececec 1px, #ececec 2px);
+}
+
+.book-stack-edge--left {
+  left: -8px;
+  border-radius: 2px 0 0 2px;
+  box-shadow: -1px 0 0 #f5f5f5, -2px 0 0 #f0f0f0, -3px 0 0 #ebebeb, -4px 0 0 #e6e6e6, -5px 0 0 #e2e2e2, -6px 0 4px rgba(0, 0, 0, 0.06);
+}
+
+.book-stack-edge--right {
+  right: -8px;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 1px 0 0 #f5f5f5, 2px 0 0 #f0f0f0, 3px 0 0 #ebebeb, 4px 0 0 #e6e6e6, 5px 0 0 #e2e2e2, 6px 0 4px rgba(0, 0, 0, 0.06);
+}
+
+.book-stack-sheet {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: #fff;
+  border: 1px solid #efefef;
+  box-sizing: border-box;
+}
+
+.book-stack-sheet--left {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+  border-right: none;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.035) 0%, rgba(0, 0, 0, 0) 12%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.04) 100%), #fff;
+  box-shadow: 1px 0 0 #f7f7f7, 2px 0 0 #f3f3f3, 3px 0 0 #efefef, 4px 0 0 #ebebeb;
+}
+
+.book-stack-sheet--right {
+  right: 0;
+  border-radius: 0 3px 3px 0;
+  border-left: none;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 88%, rgba(0, 0, 0, 0.035) 100%), #fff;
+  box-shadow: -1px 0 0 #f7f7f7, -2px 0 0 #f3f3f3, -3px 0 0 #efefef, -4px 0 0 #ebebeb;
 }
 
 .book-page {
@@ -1847,6 +1927,8 @@ ol {
   height: 100%;
   transform-origin: left center;
   transform-style: preserve-3d;
+  background: transparent;
+  overflow: visible;
   transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: default;
 }
@@ -1855,6 +1937,9 @@ ol {
 }
 .book-page.is-flipping {
   pointer-events: none;
+}
+.book-page:not(.is-flipping) .page-face {
+  box-shadow: none;
 }
 
 .page-face {
@@ -1881,6 +1966,24 @@ ol {
 
 .book-page--cover .page-face--back {
   background: #fff;
+}
+
+.book-page--cover .page-face--front,
+.book-page--cover .page-face--back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-color: #fff;
+}
+
+.book-page--cover.is-flipping::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  width: 2px;
+  background: #f3f3f3;
+  pointer-events: none;
 }
 
 .page-face--blank {

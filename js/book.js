@@ -198,7 +198,8 @@
 		if (hasOpened) return;
 		hasOpened = true;
 
-		// Stay on the right — expand left and fold the cover
+		// Clip left side before expanding so under-pages/shadow never flash
+		bookEl.classList.add('is-opening');
 		bookEl.classList.remove('is-closed');
 		bookEl.classList.add('is-open');
 		flipNext();
